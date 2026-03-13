@@ -48,8 +48,6 @@ export default defineConfig([
           ],
         },
       ],
-      'react/jsx-uses-react': 'error',
-      'react/jsx-uses-vars': 'error',
       'no-unused-vars': 'off', // or "@typescript-eslint/no-unused-vars": "off",
       'unused-imports/no-unused-imports': 'error',
       'unused-imports/no-unused-vars': [

@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-. "$(dirname "$0")/"
+set -e
 
 cd frontend
 npm run format
