@@ -1,70 +1,125 @@
 import js from '@eslint/js';
 import globals from 'globals';
+import { defineConfig, globalIgnores } from 'eslint/config';
+import tseslint from 'typescript-eslint';
 
+import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
-import tseslint from 'typescript-eslint';
-import { defineConfig, globalIgnores } from 'eslint/config';
-import pluginQuery from '@tanstack/eslint-plugin-query';
-import react from 'eslint-plugin-react';
-import eslintConfigPrettier from 'eslint-config-prettier';
-import unusedImports from 'eslint-plugin-unused-imports';
-import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 
+import pluginQuery from '@tanstack/eslint-plugin-query';
+
+import unicorn from 'eslint-plugin-unicorn';
+import importPlugin from 'eslint-plugin-import';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
+import unusedImports from 'eslint-plugin-unused-imports';
+
+import prettier from 'eslint-config-prettier';
 
 export default defineConfig([
   globalIgnores(['dist']),
+
   {
     files: ['**/*.{ts,tsx}'],
+
     extends: [
       js.configs.recommended,
       tseslint.configs.recommended,
       reactHooks.configs.flat.recommended,
       ...pluginQuery.configs['flat/recommended'],
       reactRefresh.configs.vite,
-      eslintPluginUnicorn.configs.recommended,
-      eslintConfigPrettier,
+      unicorn.configs.recommended,
+      prettier,
     ],
+
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
     },
+
     plugins: {
-      unicorn: eslintPluginUnicorn,
-      'simple-import-sort': simpleImportSort,
       react,
+      unicorn,
+      import: importPlugin,
+      'simple-import-sort': simpleImportSort,
       'unused-imports': unusedImports,
     },
+
+    settings: {
+      'import/resolver': {
+        typescript: { project: './tsconfig.json' },
+        node: { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
+      },
+    },
+
     rules: {
+      /**
+       * Architecture
+       */
+      'no-restricted-imports': [
+        'error',
+        { patterns: ['../*', '../../*', '../../../*', '../../../../*'] },
+      ],
+
+      'import/no-restricted-paths': [
+        'error',
+        {
+          basePath: process.cwd(),
+          zones: [
+            {
+              target: './frontend',
+              from: './backend',
+              message: 'Frontend must not import backend code.',
+            },
+            {
+              target: './backend',
+              from: './frontend',
+              message: 'Backend must not import frontend code.',
+            },
+          ],
+        },
+      ],
+
+      /**
+       * Imports
+       */
       'simple-import-sort/imports': [
         'error',
         {
           groups: [
-            ['^react', '^@?\\w'], // React + external packages
-            ['^@/'], // alias imports
-            ['^\\.'], // relative imports
-            ['^\\u0000'], // side effects (css)
+            ['^react', '^@?\\w'], // external
+            ['^@/'], // alias
+            ['^\\.'], // relative
+            ['^\\u0000'], // side effects
           ],
         },
       ],
-      'no-unused-vars': 'off', // or "@typescript-eslint/no-unused-vars": "off",
-      'unused-imports/no-unused-imports': 'error',
+      'simple-import-sort/exports': 'error',
+
+      /**
+       * Unused imports
+       */
+      'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': 'off',
       'unused-imports/no-unused-vars': [
         'warn',
         {
-          vars: 'all',
           varsIgnorePattern: '^_',
-          args: 'after-used',
           argsIgnorePattern: '^_',
         },
       ],
-      'simple-import-sort/exports': 'error',
+
+      /**
+       * Overrides
+       */
       'unicorn/prefer-query-selector': 'off',
       'unicorn/prevent-abbreviations': 'off',
       'unicorn/prefer-node-protocol': 'off',
       'react-refresh/only-export-components': 'off',
+
+      /**
+       * File naming
+       */
       'unicorn/filename-case': [
         'error',
         {
