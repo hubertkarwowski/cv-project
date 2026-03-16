@@ -15,6 +15,11 @@ import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import unusedImports from 'eslint-plugin-unused-imports';
 
 import prettier from 'eslint-config-prettier';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const configDir = path.dirname(fileURLToPath(import.meta.url));
+const repoRoot = path.resolve(configDir, '..');
 
 export default defineConfig([
   globalIgnores(['dist']),
@@ -47,7 +52,7 @@ export default defineConfig([
 
     settings: {
       'import/resolver': {
-        typescript: { project: './tsconfig.json' },
+        typescript: { project: path.join(repoRoot, 'tsconfig.json') },
         node: { extensions: ['.js', '.jsx', '.ts', '.tsx'] },
       },
     },
@@ -56,15 +61,12 @@ export default defineConfig([
       /**
        * Architecture
        */
-      'no-restricted-imports': [
-        'error',
-        { patterns: ['../*', '../../*', '../../../*', '../../../../*'] },
-      ],
+      'no-restricted-imports': ['error', { patterns: ['../*', '../**'] }],
 
       'import/no-restricted-paths': [
         'error',
         {
-          basePath: process.cwd(),
+          basePath: repoRoot,
           zones: [
             {
               target: './frontend',
@@ -101,6 +103,7 @@ export default defineConfig([
        */
       'no-unused-vars': 'off',
       '@typescript-eslint/no-unused-vars': 'off',
+      'unused-imports/no-unused-imports': 'error',
       'unused-imports/no-unused-vars': [
         'warn',
         {

@@ -192,9 +192,9 @@ import { useState } from 'react';
 export default function ExampleComponent({ title }) {
   const [count, setCount] = useState(0);
 
-  const handleClick = () = > {
+  const handleClick = () => {
     setCount((prev) => prev + 1);
-  }
+  };
 
   return (
     <div>
@@ -215,7 +215,14 @@ Order:
 
 ### 4.2 Colocate things as close as possible to where it's being used
 
-Keep components, functions, styles, state, etc. as close as possible to where they are being used. This will not only make your codebase more readable and easier to understand but it will also improve your application performance since it will reduce redundant re-renders on state updates.
+Keep components, functions, styles, state, and context providers as close as possible to
+where they are being used. From a readability standpoint, this makes the codebase more
+modular and easier to reason about.
+
+From a performance standpoint, this specifically applies to **state and context providers**:
+placing state higher than necessary means every state update triggers a re-render of the
+entire subtree below it, including components that don't depend on that state. Colocating
+state near its consumers narrows the re-render boundary to only the components that need it.
 
 ### 4.2 Avoid large components with nested rendering functions
 
@@ -251,8 +258,6 @@ Keep your code style consistent. For example, if you name your components using 
 ### 4.4 Limit the number of props a component is accepting as input
 
 If your component is accepting too many props you might consider splitting it into multiple components or use the composition technique via children or slots.
-
-[Composition Example Code](../apps/react-vite/src/components/ui/dialog/confirmation-dialog/confirmation-dialog.tsx)
 
 ---
 
