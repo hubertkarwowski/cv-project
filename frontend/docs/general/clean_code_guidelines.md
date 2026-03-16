@@ -224,7 +224,7 @@ placing state higher than necessary means every state update triggers a re-rende
 entire subtree below it, including components that don't depend on that state. Colocating
 state near its consumers narrows the re-render boundary to only the components that need it.
 
-### 4.2 Avoid large components with nested rendering functions
+### 4.3 Avoid large components with nested rendering functions
 
 Do not add multiple rendering functions inside your application, this gets out of control pretty quickly. What you should do instead is if there is a piece of UI that can be considered as a unit, is to extract it in a separate component.
 
@@ -251,11 +251,11 @@ function Component() {
 }
 ```
 
-### 4.3 Stay consistent
+### 4.4 Stay consistent
 
 Keep your code style consistent. For example, if you name your components using pascal case, do it everywhere. Most of code consistency is achieved by using linters and code formatters, so make sure you have them set up in your project.
 
-### 4.4 Limit the number of props a component is accepting as input
+### 4.5 Limit the number of props a component is accepting as input
 
 If your component is accepting too many props you might consider splitting it into multiple components or use the composition technique via children or slots.
 
