@@ -178,7 +178,59 @@ function UserCard({ user }) {
 
 ### 3.3 Extract Logic into reusable Hooks
 
----
+Stateful logic embedded directly in a component makes it hard to test, reuse, and read. Extract it into a custom hook instead.
+
+#### Bad
+
+```javascript
+function UserProfile({ userId }) {
+  const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetchUser(userId)
+      .then(setUser)
+      .catch(setError)
+      .finally(() => setIsLoading(false));
+  }, [userId]);
+
+  if (isLoading) return <Spinner />;
+  if (error) return <ErrorMessage error={error} />;
+  return <UserView user={user} />;
+}
+```
+
+#### Good
+
+```javascript
+function useUser(userId) {
+  const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    setIsLoading(true);
+    fetchUser(userId)
+      .then(setUser)
+      .catch(setError)
+      .finally(() => setIsLoading(false));
+  }, [userId]);
+
+  return { user, isLoading, error };
+}
+
+function UserProfile({ userId }) {
+  const { user, isLoading, error } = useUser(userId);
+
+  if (isLoading) return <Spinner />;
+  if (error) return <ErrorMessage error={error} />;
+  return <UserView user={user} />;
+}
+```
+
+Custom hooks are prefixed with use and should live in a dedicated hooks/ folder. They are plain functions and can be unit-tested independently of any component.
 
 ## 4. Component Patterns
 
