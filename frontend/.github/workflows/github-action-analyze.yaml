@@ -1,6 +1,8 @@
 name: GitHub Action Analyze
 on:
   pull_request:
+    paths:
+      - 'frontend/**'
     branches:
       - main
     types: [opened, reopened, synchronize]
