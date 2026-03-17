@@ -7,23 +7,40 @@ on:
       - main
     types: [opened, reopened, synchronize]
 
+concurrency:
+  group: pr-${{github.ref}}
+  cancel-in-progress: true
+
 jobs:
   analyze:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/cache@v5
         with:
-          node-version: '20'
+          node-version: '24'
           cache: 'npm'
+
+      - name: Cache node modules
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.npm
+            node_modules
+            key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+            restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Install dependencies
         run: npm ci
-      - name: Typecheck
-        run: npm run typecheck
-      - name: Lint
-        run: npm run lint
-      - name: Format
-        run: npm run format:check
-        #Todo: in the future, add vitest and test coverage check here as well
+
+      - name: Run typecheck, lint and format in parallel
+        run: |
+          npm run typecheck &
+          npm run lint &
+          npm run format:check &
+          wait
