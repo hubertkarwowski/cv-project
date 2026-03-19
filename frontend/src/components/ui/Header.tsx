@@ -53,19 +53,19 @@ function Header({ className, variant, size, ...props }: HeaderProps) {
       <nav className="ml-auto hidden items-center gap-2 md:flex">
         <Button
           variant="link"
-          className="text-muted-foreground hover:text-foreground cursor-pointer"
+          className="text-muted-foreground hover:text-primary cursor-pointer"
         >
           Styles
         </Button>
         <Button
           variant="link"
-          className="text-muted-foreground hover:text-foreground cursor-pointer"
+          className="text-muted-foreground hover: text-primary cursor-pointer"
         >
           Guide
         </Button>
         <Button
           variant="link"
-          className="text-muted-foreground hover:text-foreground cursor-pointer"
+          className="text-muted-foreground hover:text-primary cursor-pointer"
         >
           FAQ
         </Button>
