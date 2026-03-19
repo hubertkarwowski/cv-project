@@ -1,2 +1,4 @@
-frontend/
-/README.md
+backend/venv/
+**/__pycache__/
+.env
+node_modules/
