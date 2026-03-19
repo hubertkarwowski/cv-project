@@ -3,6 +3,7 @@ venv/
 
 # Python cache
 __pycache__/
+.mypy_cache/
 *.pyc
 *.pyo
 *.pyd
@@ -13,9 +14,6 @@ __pycache__/
 # IDE
 .vscode/
 .idea/
-
-# Logs
-*.log
 
 # dev
 .ruff_cache/
