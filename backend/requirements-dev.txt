@@ -1,0 +1,11 @@
+# Testing
+pytest==8.2.3
+pytest-asyncio==0.21.0
+httpx==1.2.2
+pytest-mock==3.12.1
+
+# Code quality & formatting
+ruff==0.15.6
+black==26.3.1
+mypy==1.19.1
+pre-commit==4.5.1

@@ -1,0 +1,37 @@
+[tool.black]
+line-length = 88
+target-version = ['py312']
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.ruff]
+line-length = 88
+select = ["E", "F", "W", "C90"]
+ignore = ["E501"]  # ignore line length if black handles it
+exclude = ["venv", ".git", "__pycache__"]
+
+[tool.mypy]
+python_version = 3.12.4
+warn_unused_configs = true
+ignore_missing_imports = true
+strict = true
+
+[tool.pre-commit]
+repos = [
+    { repo = "https://github.com/psf/black", rev = "26.3.1", hooks = [{id = "black"}] },
+    { repo = "https://github.com/charliermarsh/ruff-pre-commit", rev = "0.15.6", hooks = [{id = "ruff"}] },
+    { repo = "https://github.com/pre-commit/mirrors-mypy", rev = "v1.19.1", hooks = [{id = "mypy"}] }
+]
