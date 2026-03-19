@@ -16,3 +16,6 @@ __pycache__/
 
 # Logs
 *.log
+
+# dev
+.ruff_cache/

@@ -10,6 +10,8 @@ exclude = '''
   | \.mypy_cache
   | \.tox
   | \.venv
+  | venv
+  | .ruff_cache
   | _build
   | buck-out
   | build
@@ -19,12 +21,15 @@ exclude = '''
 
 [tool.ruff]
 line-length = 88
-select = ["E", "F", "W", "C90"]
-ignore = ["E501"]  # ignore line length if black handles it
 exclude = ["venv", ".git", "__pycache__"]
 
+[tool.ruff.lint]
+select = ["E", "F", "W", "C90"]
+ignore = ["E501"]  # ignore line length if black handles it
+
+
 [tool.mypy]
-python_version = 3.12.4
+python_version = 3.12
 warn_unused_configs = true
 ignore_missing_imports = true
 strict = true
