@@ -1,4 +1,5 @@
 name: GitHub Action Analyze
+
 on:
   pull_request:
     paths:
@@ -8,12 +9,18 @@ on:
     types: [opened, reopened, synchronize]
 
 concurrency:
-  group: pr-${{github.ref}}
+  group: pr-${{ github.event.pull_request.number }}
   cancel-in-progress: true
 
 jobs:
   analyze:
+    name: ${{ matrix.task }}
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        task: [lint, typecheck, format:check]
 
     steps:
       - name: Checkout repository
@@ -24,24 +31,12 @@ jobs:
         with:
           node-version: '24'
           cache: 'npm'
-
-      - name: Cache node modules
-        uses: actions/cache@v5
-        with:
-          path: |
-            ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          cache-dependency-path: frontend/package-lock.json
 
       - name: Install dependencies
         run: npm ci
         working-directory: frontend
 
-      - name: Run typecheck, lint and format in parallel
-        run: |
-          npm run typecheck &
-          npm run lint &
-          npm run format:check &
-          wait
+      - name: Run task
+        run: npm run ${{ matrix.task }}
         working-directory: frontend
