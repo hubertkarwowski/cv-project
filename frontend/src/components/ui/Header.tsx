@@ -42,31 +42,31 @@ function Header({ className, variant, size, ...props }: HeaderProps) {
       >
         {/* logo section */}
         <div className="flex items-center gap-2 text-lg select-none md:text-xl">
-          <div className="bg-primary text-primary-foreground flex size-8 items-center justify-center rounded-lg font-bold md:size-8">
+          <div className="text-primary-foreground flex size-8 items-center justify-center rounded-lg bg-blue-500 text-xl font-bold md:size-8">
             C
           </div>
-          <span className="text-foreground hidden font-bold tracking-tight sm:block">
+          <span className="text-foreground hidden text-2xl font-bold tracking-tight sm:block">
             Future
           </span>
         </div>
 
         {/* navigation section */}
-        <nav className="mr-5 ml-auto hidden items-start gap-2 md:flex">
+        <nav className="mr-5 ml-auto hidden items-start gap-2 transition-all duration-500 md:flex">
           <Button
             variant="link"
-            className="text-muted-foreground hover:text-primary cursor-pointer text-base transition-colors duration-600 ease-in-out"
+            className="text-muted-foreground hover:text-primary cursor-pointer text-xl transition-all transition-colors duration-500 ease-in-out hover:text-blue-500"
           >
             Styles
           </Button>
           <Button
             variant="link"
-            className="text-muted-foreground hover:text-primary cursor-pointer text-base"
+            className="text-muted-foreground hover:text-primary cursor-pointer text-xl transition-all transition-colors duration-500 hover:text-blue-500"
           >
             Guide
           </Button>
           <Button
             variant="link"
-            className="text-muted-foreground hover:text-primary cursor-pointer text-base"
+            className="text-muted-foreground hover:text-primary cursor-pointer text-xl transition-all transition-colors duration-500 hover:text-blue-500"
           >
             FAQ
           </Button>
@@ -77,7 +77,7 @@ function Header({ className, variant, size, ...props }: HeaderProps) {
           <Button
             variant="default"
             size="lg"
-            className="text-muted-foreground hidden cursor-pointer bg-transparent text-base hover:text-blue-500 sm:inline-flex"
+            className="text-muted-foreground hidden cursor-pointer bg-transparent text-base text-xl transition-all duration-500 hover:text-blue-500 sm:inline-flex"
           >
             Log In
           </Button>
