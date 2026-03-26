@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { cva, type VariantProps } from 'class-variance-authority';
 import { useState } from 'react';
-import { cn } from '@/lib/utils.ts';
-import { Button } from './button';
+import { cva, type VariantProps } from 'class-variance-authority';
 import { Menu, X } from 'lucide-react';
+
+import { cn } from '@/lib/utils.ts';
+
+import { Button } from './button';
 
 const headerVariants = cva(
   'flex w-full items-center justify-end px-6 transition-all duration-800 relative',
@@ -57,25 +59,17 @@ function Header({ className, variant, size, ...props }: HeaderProps) {
         </div>
 
         {/* navigation section */}
-        <nav className="mr-5 ml-auto hidden items-start gap-2 transition-all duration-500 md:flex">
-          <Button
-            variant="link"
-            className="text-muted-foreground hover:text-primary cursor-pointer text-xl transition-all transition-colors duration-500 ease-in-out hover:text-blue-500"
-          >
-            Styles
-          </Button>
-          <Button
-            variant="link"
-            className="text-muted-foreground hover:text-primary cursor-pointer text-xl transition-all transition-colors duration-500 hover:text-blue-500"
-          >
-            Guide
-          </Button>
-          <Button
-            variant="link"
-            className="text-muted-foreground hover:text-primary cursor-pointer text-xl transition-all transition-colors duration-500 hover:text-blue-500"
-          >
-            FAQ
-          </Button>
+
+        <nav className="mr-5 ml-auto hidden items-start gap-2 transition-all duration-500 lg:flex">
+          {navLinks.map((link) => (
+            <Button
+              key={link}
+              variant="link"
+              className="text-muted-foreground hover:text-primary cursor-pointer text-xl transition-all transition-colors duration-500 ease-in-out hover:text-blue-500"
+            >
+              {link}
+            </Button>
+          ))}
         </nav>
 
         {/* login section */}
@@ -83,7 +77,7 @@ function Header({ className, variant, size, ...props }: HeaderProps) {
           <Button
             variant="default"
             size="lg"
-            className="text-muted-foreground hidden cursor-pointer bg-transparent text-base text-xl transition-all duration-500 hover:text-blue-500 md:inline-flex"
+            className="border-border text-muted-foreground hidden cursor-pointer rounded-full bg-transparent px-8 py-4 text-xl transition-all duration-500 hover:border-blue-500 hover:text-blue-500 lg:inline-flex"
           >
             Log In
           </Button>
@@ -91,14 +85,14 @@ function Header({ className, variant, size, ...props }: HeaderProps) {
           <Button
             variant="default"
             size="lg"
-            className="hidden cursor-pointer rounded-full border-none bg-blue-500 px-8 py-4 text-base font-semibold shadow-sm ring-0 transition-all duration-500 ease-in-out hover:bg-transparent hover:text-blue-500 hover:shadow-md md:inline-flex"
+            className="hidden cursor-pointer rounded-full border-none bg-blue-500 px-8 py-4 text-xl font-semibold shadow-sm ring-0 transition-all duration-500 ease-in-out hover:bg-transparent hover:text-blue-500 hover:shadow-md lg:inline-flex"
           >
             Join now
           </Button>
         </div>
         <Button
           variant="ghost"
-          className="z-[100] p-2 md:hidden"
+          className="z-[100] p-2 lg:hidden"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X className="size-8" /> : <Menu className="size-8" />}
@@ -108,14 +102,14 @@ function Header({ className, variant, size, ...props }: HeaderProps) {
       {/* Mobile */}
       <div
         className={cn(
-          'bg-background fixed top-20 left-0 z-40 h-screen w-full border-b shadow-xl transition-all duration-1200 md:hidden',
+          'bg-background fixed top-20 left-0 z-40 h-screen w-full border-b shadow-xl transition-all duration-1200 lg:hidden',
           isOpen
             ? 'visible translate-y-0 opacity-100'
             : 'pointer-events-none invisible -translate-y-full opacity-0'
         )}
       >
         {/* Mobile navigation section*/}
-        <div className="flex h-[calc(100vh-5rem)] flex-col items-center justify-between p-10">
+        <div className="flex h-[calc(100vh-5rem)] flex-col items-center justify-between overflow-y-auto p-10">
           {/* navigation */}
           <nav className="flex flex-col gap-5 transition-all duration-500">
             {navLinks.map((link) => (
