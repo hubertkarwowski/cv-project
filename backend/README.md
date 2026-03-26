@@ -11,7 +11,7 @@ A modular structure has been implemented within the `app/` directory:
 - `models/`- data definitions and validation.
 - `services/`- pure business logic.
 
-## Tooling & Quality Gate
+# Tooling & Quality Gate
 
 - **Black**: code formatting (PEP8).
 - **Ruff**: linter for detecting logical errors and optimizing imports.
