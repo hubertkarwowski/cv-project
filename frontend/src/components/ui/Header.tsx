@@ -91,8 +91,8 @@ function Header({ className, variant, size, ...props }: HeaderProps) {
           </Button>
         </div>
         <Button
-          variant="ghost"
-          className="z-[100] p-2 lg:hidden"
+          variant="default"
+          className="z-[100] bg-transparent p-2 text-black lg:hidden"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X className="size-8" /> : <Menu className="size-8" />}
@@ -102,7 +102,7 @@ function Header({ className, variant, size, ...props }: HeaderProps) {
       {/* Mobile */}
       <div
         className={cn(
-          'bg-background fixed top-20 left-0 z-40 h-screen w-full border-b shadow-xl transition-all duration-1200 lg:hidden',
+          'bg-background fixed top-20 left-0 z-40 h-full w-full border-b shadow-xl transition-all duration-200 lg:hidden',
           isOpen
             ? 'visible translate-y-0 opacity-100'
             : 'pointer-events-none invisible -translate-y-full opacity-0'
