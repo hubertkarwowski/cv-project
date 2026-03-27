@@ -36,7 +36,6 @@ export const useHandleSubmit = <
     onSuccess(data) {
       toast.success(onSuccessToastMessage);
       onSuccess?.(data);
-      console.log(data);
     },
     onError(error) {
       toast.error(onErrorToastMessage);

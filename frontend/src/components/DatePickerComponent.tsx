@@ -64,7 +64,7 @@ export const DatePickerComponent = <TSchema extends z.ZodObject>({
                 mode="single"
                 selected={field.value as Date}
                 onSelect={field.onChange}
-                initialFocus
+                autoFocus
               />
             </PopoverContent>
           </Popover>
