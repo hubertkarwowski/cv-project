@@ -40,11 +40,14 @@ export const useAppStore = create((...a) => ({
 Go to `frontend/src/hooks/useAppStores.ts` and expose your slice through a custom hook.
 
 ```ts
-export const useMyForm = () =>
-  useAppStore((state) => ({
-    values: state.values as MyFormValues[],
-    setValues: state.setValues as (values: MyFormValues[]) => void,
-  }));
+import { createFormStore } from '@/stores/store';
+
+export type RegisterFormValues = {
+  email: string;
+  firstName: string;
+};
+
+export const useRegisterFormStore = createFormStore<RegisterFormValues>();
 ```
 
 ### 4. Use the hook in your components
@@ -53,7 +56,7 @@ export const useMyForm = () =>
 import { useMyForm } from '@/hooks/useAppStores';
 
 export function MyComponent() {
-  const { values, setValues } = useMyForm();
+  const { values, setValues } = useRegisterFormStore();
 
   return (
     <div>
