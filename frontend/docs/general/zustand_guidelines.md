@@ -53,7 +53,7 @@ export const useRegisterFormStore = createFormStore<RegisterFormValues>();
 ### 4. Use the hook in your components
 
 ```jsx
-import { useMyForm } from '@/hooks/useAppStores';
+import { useRegisterFormStore } from '@/hooks/useAppStores';
 
 export function MyComponent() {
   const { values, setValues } = useRegisterFormStore();

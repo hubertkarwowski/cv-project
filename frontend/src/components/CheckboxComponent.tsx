@@ -31,7 +31,7 @@ export const CheckboxComponent = <TSchema extends z.ZodObject>({
             <Checkbox
               id={name}
               checked={field.value as boolean}
-              onCheckedChange={field.onChange}
+              onCheckedChange={(checked) => field.onChange(checked === true)}
               aria-invalid={fieldState.invalid}
             />
             <FieldLabel htmlFor={name} className="mb-0! cursor-pointer">

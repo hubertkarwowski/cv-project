@@ -50,6 +50,7 @@ export const TextareaComponent = <TSchema extends z.ZodObject>({
             className="min-h-24 resize-none"
             aria-invalid={fieldState.invalid}
             value={(field.value as string) ?? ''}
+            maxLength={maxLength}
           />
           {maxLength && (
             <p className="text-muted-foreground text-sm tabular-nums">
