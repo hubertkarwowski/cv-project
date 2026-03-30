@@ -1,4 +1,9 @@
+import background from '@/assets/background.png';
+import heroimage from '@/assets/heroimage.png';
+import { cn } from '@/lib/utils';
+
 import { Button } from './button';
+import { CFuturelogo } from './CFuturelogo';
 
 type HeroProps = {
   className?: string;
@@ -6,25 +11,60 @@ type HeroProps = {
 
 function Hero({ className, ...props }: HeroProps) {
   return (
-    <main className={''} {...props}>
-      <div>
-        <h1>Lorem, ipsum dolor.</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, dolor
-          in consectetur aspernatur ad at, dicta fuga expedita commodi corrupti
-          quo aliquid placeat est autem aliquam impedit explicabo assumenda
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium,
-          obcaecati? iste.
+    <main
+      {...props}
+      style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }}
+      className={
+        (cn(
+          'flex min-h-screen max-w-screen flex-col items-center justify-center gap-16 overflow-hidden px-6 py-12 lg:mt-2 lg:flex-row lg:gap-4 lg:px-20 xl:mt-2 xl:flex-row xl:gap-4 xl:px-20'
+        ),
+        className)
+      }
+      {...props}
+    >
+      {/* hero-content */}
+      <div className="order-2 -mt-12 flex w-full flex-col gap-4 text-center sm:mt-2 lg:order-1 lg:text-left xl:order-1 xl:text-left">
+        {/* hero-title */}
+        <h1 className="mt-10 font-extrabold tracking-tight lg:select-none">
+          <CFuturelogo />
+          <span className="text-4xl lg:text-6xl xl:text-6xl">
+            {' '}
+            Twoja {''}
+            <span className="bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">
+              przyszłość
+            </span>
+          </span>
+        </h1>
+        {/* hero-subtitle */}
+        <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-pretty text-slate-600 select-none lg:mx-0 lg:text-justify lg:text-lg xl:mx-0 xl:text-lg">
+          CV to coś więcej niż dokument. To Twoja przepustka do
+          <b> lepszej pracy, wyższych zarobków i życia, jakiego chcesz</b>.
+          Stwórz profesjonalne CV w kilka minut.
         </p>
-        <div>
-          <Button>Stwórz CV online</Button>
-          <Button>Ulepsz swoje CV</Button>
+        {/* hero-cta */}
+        <div className="flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
+          <Button
+            variant="default"
+            className="w-full cursor-pointer rounded-full bg-blue-600 px-8 py-6 text-lg shadow-xl shadow-blue-500/25 hover:-translate-y-0.5 sm:w-auto"
+          >
+            Stwórz CV online
+          </Button>
+          <Button
+            variant="default"
+            className="border-border w-full cursor-pointer rounded-full bg-white px-8 py-6 text-lg text-slate-600 hover:-translate-y-0.5 sm:w-auto"
+          >
+            Ulepsz swoje CV
+          </Button>
         </div>
       </div>
-      <div>
+
+      {/* hero-image */}
+      <div className="md:bloack mt-22 w-full max-w-md scale-140 sm:hidden md:mt-16 md:scale-120 lg:order-2 lg:block lg:max-w-full lg:scale-160 lg:transform xl:order-2 xl:block xl:max-w-full xl:scale-160 xl:transform">
         <img
-          src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt=""
+          className="h-auto w-full object-contain select-none"
+          src={heroimage}
+          draggable="false"
+          alt="Hero illustration"
         />
       </div>
     </main>

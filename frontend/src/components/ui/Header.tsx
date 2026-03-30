@@ -44,7 +44,7 @@ function Header({ className, variant, size, ...props }: HeaderProps) {
       <header
         className={cn(
           headerVariants({ variant, size, className }),
-          'relative justify-between'
+          'fixed justify-between'
         )}
         {...props}
       >
