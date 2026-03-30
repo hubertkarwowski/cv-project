@@ -12,14 +12,11 @@ type HeroProps = {
 function Hero({ className, ...props }: HeroProps) {
   return (
     <main
-      {...props}
       style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }}
-      className={
-        (cn(
-          'flex min-h-screen max-w-screen flex-col items-center justify-center gap-16 overflow-hidden px-6 py-12 lg:mt-2 lg:flex-row lg:gap-4 lg:px-20 xl:mt-2 xl:flex-row xl:gap-4 xl:px-20'
-        ),
-        className)
-      }
+      className={cn(
+        'flex min-h-screen max-w-screen flex-col items-center justify-center gap-16 overflow-hidden px-6 py-12 lg:mt-2 lg:flex-row lg:gap-4 lg:px-20 xl:mt-2 xl:flex-row xl:gap-4 xl:px-20',
+        className
+      )}
       {...props}
     >
       {/* hero-content */}
