@@ -1,16 +1,15 @@
-
 #!/usr/bin/env sh
-ALLOWED_TYPES="feat|fix|chore|docs|refactor|test|"
+ALLOWED_TYPES="feat|fix|chore|docs|refactor|test"
 
 BRANCH_NAME=$(git symbolic-ref --short HEAD)
 
 PATTERN="^(${ALLOWED_TYPES})\/[a-z0-9._-]+$"
 
-if [[ "$BRANCH_NAME" == "main" || "$BRANCH_NAME" == "master" || "$BRANCH_NAME" == "develop" ]]; then
-    exit 0
-fi
+case "$BRANCH_NAME" in
+  (main|master|develop) exit 0;;
+esac
 
-if [[ ! "$BRANCH_NAME" =~ $PATTERN ]]; then
+if ! printf '%s\n' "$BRANCH_NAME" | grep -Eq "$PATTERN"; then
   echo "❌ Invalid branch name: '$BRANCH_NAME'"
   echo ""
   echo "✅ Expected format:"
