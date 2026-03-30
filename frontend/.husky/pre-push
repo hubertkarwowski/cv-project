@@ -1,6 +1,6 @@
 
 #!/usr/bin/env sh
-ALLOWED_TYPES="feat|fix|chore|docs|refactor|test|"
+ALLOWED_TYPES="feat|fix|chore|docs|refactor|test"
 
 BRANCH_NAME=$(git symbolic-ref --short HEAD)
 
