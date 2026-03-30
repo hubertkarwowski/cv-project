@@ -65,7 +65,7 @@ function Header({ className, variant, size, ...props }: HeaderProps) {
             <Button
               key={link}
               variant="link"
-              className="text-muted-foreground hover:text-primary cursor-pointer text-xl transition-all transition-colors duration-500 ease-in-out hover:text-blue-500"
+              className="text-muted-foreground hover:text-primary cursor-pointer text-xl transition-all transition-colors duration-500 ease-in-out hover:text-blue-500 hover:no-underline"
             >
               {link}
             </Button>
