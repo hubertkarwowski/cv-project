@@ -22,9 +22,10 @@ function Hero({ className, ...props }: HeroProps) {
       {/* hero-content */}
       <div className="order-2 -mt-12 flex w-full flex-col gap-4 text-center sm:mt-2 lg:order-1 lg:text-left xl:order-1 xl:text-left">
         {/* hero-title */}
-        <h1 className="mt-10 font-extrabold tracking-tight lg:select-none">
-          <CFuturelogo />
-          <span className="text-4xl lg:text-6xl xl:text-6xl">
+        <h1 className="mt-10 flex flex-col items-center text-center font-extrabold tracking-tight lg:items-start lg:text-left lg:select-none">
+          {/* logo */}
+          <CFuturelogo className="mb-1 scale-80 justify-center lg:mb-4 lg:scale-none lg:justify-start" />
+          <span className="px-0 text-4xl lg:text-6xl xl:text-6xl">
             {' '}
             Twoja {''}
             <span className="bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent">
@@ -56,7 +57,7 @@ function Hero({ className, ...props }: HeroProps) {
       </div>
 
       {/* hero-image */}
-      <div className="md:bloack mt-22 w-full max-w-md scale-140 sm:hidden md:mt-16 md:scale-120 lg:order-2 lg:block lg:max-w-full lg:scale-160 lg:transform xl:order-2 xl:block xl:max-w-full xl:scale-160 xl:transform">
+      <div className="${TABLET_BREAKPOINT}:mt-100 mt-22 w-full max-w-md scale-140 sm:hidden md:mt-16 md:scale-120 lg:order-2 lg:block lg:max-w-full lg:scale-160 lg:transform xl:order-2 xl:block xl:max-w-full xl:scale-160 xl:transform">
         <img
           className="h-auto w-full object-contain select-none"
           src={heroimage}

@@ -9,7 +9,7 @@ function CFuturelogo({ className, ...props }: CFuturelogoProps) {
     <div
       {...props}
       className={cn(
-        'z-[60] flex items-center gap-2 text-lg select-none md:text-xl',
+        'flex items-center gap-2 text-lg select-none md:text-xl',
         className
       )}
     >

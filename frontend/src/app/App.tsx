@@ -1,5 +1,6 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
+import { Footer } from '@/components/ui/Footer';
 import { Header } from '@/components/ui/Header';
 import { Hero } from '@/components/ui/Hero';
 
@@ -10,6 +11,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Header />
       <Hero />
+      <Footer />
     </QueryClientProvider>
   );
 }
