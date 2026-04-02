@@ -130,6 +130,7 @@ export default defineConfig([
           ignore: ['^[A-Z][a-zA-Z0-9]*\\.tsx$', '^use[A-Z][a-zA-Z0-9]*\\.ts'],
         },
       ],
+      'no-console': ['error', { allow: ['warn', 'error'] }],
     },
   },
 ]);
