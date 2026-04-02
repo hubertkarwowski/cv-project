@@ -41,9 +41,8 @@ class UserBase(BaseModel):
     @field_validator("date_of_birth")
     @classmethod
     def must_be_adult(cls, v: date) -> date:
-        from datetime import date as today_date
-
-        age = (today_date.today() - v).days // 365
+        today = date.today()
+        age = today.year - v.year - ((today.month, today.day) < (v.month, v.day))
         if age < 18:
             raise ValueError("User must be at least 18 years old")
         return v
