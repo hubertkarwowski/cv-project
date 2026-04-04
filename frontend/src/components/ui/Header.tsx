@@ -6,26 +6,40 @@ import { Menu, X } from 'lucide-react';
 import { cn } from '@/lib/utils.ts';
 
 import { Button } from './button';
+import { CFuturelogo } from './CFuturelogo';
+
+const NAV_LINKS = [
+  {
+    label: 'Templates',
+    href: '#',
+  },
+  { label: 'Guide', href: '#' },
+  { label: 'FAQ', href: '#' },
+];
 
 const headerVariants = cva(
-  'flex w-full items-center justify-end px-6 transition-all duration-800 relative',
+  'w-full flex items-center px-6 transition-all duration-300',
   {
     variants: {
       variant: {
-        default:
-          'border-b bg-background/80 backdrop-blur-md border-border fixed top-0 z-50 p-6',
-        transparent: 'bg-transparent border-transparent absolute top-0 z-50',
+        default: 'border-b border-border bg-background/80 backdrop-blur-md',
+        transparent: 'bg-transparent border-transparent',
       },
-
       size: {
         default: 'h-16',
         sm: 'h-14',
         lg: 'h-20 text-base',
       },
+
+      sticky: {
+        true: 'fixed top-0 left-0 z-50',
+        false: 'relative',
+      },
     },
     defaultVariants: {
       variant: 'default',
       size: 'lg',
+      sticky: true,
     },
   }
 );
@@ -40,8 +54,8 @@ function Header({ className, variant, size, ...props }: HeaderProps) {
   const navLinks: string[] = ['Templates', 'Guid', 'FAQ'];
 
   return (
-    <div className="">
-      <header
+    <header className="">
+      <div
         className={cn(
           headerVariants({ variant, size, className }),
           'fixed justify-between'
@@ -49,13 +63,8 @@ function Header({ className, variant, size, ...props }: HeaderProps) {
         {...props}
       >
         {/* logo section */}
-        <div className="z-[60] flex items-center gap-2 text-lg select-none md:text-xl">
-          <div className="text-primary-foreground flex size-8 items-center justify-center rounded-lg bg-blue-500 text-xl font-bold md:size-8">
-            C
-          </div>
-          <span className="text-foreground sd:size-8 text-2xl font-bold tracking-tight">
-            Future
-          </span>
+        <div className="flex items-center gap-2 select-none">
+          <CFuturelogo />
         </div>
 
         {/* navigation section */}
@@ -65,9 +74,10 @@ function Header({ className, variant, size, ...props }: HeaderProps) {
             <Button
               key={link}
               variant="link"
-              className="text-muted-foreground hover:text-primary cursor-pointer text-xl transition-all transition-colors duration-500 ease-in-out hover:text-blue-500 hover:no-underline"
+              className="text-text-main hover:text-text-blue cursor-pointer text-xl transition-all transition-colors duration-500 ease-in-out hover:no-underline"
+              asChild
             >
-              {link}
+              <a href="#">{link}</a>
             </Button>
           ))}
         </nav>
@@ -77,7 +87,7 @@ function Header({ className, variant, size, ...props }: HeaderProps) {
           <Button
             variant="default"
             size="lg"
-            className="border-border text-muted-foreground hidden cursor-pointer rounded-full bg-transparent px-8 py-4 text-xl transition-all duration-500 hover:border-blue-500 hover:text-blue-500 lg:inline-flex"
+            className="border-text-main hover:text-text-blue hover:border-text-blue text-text-main hidden cursor-pointer rounded-full bg-transparent px-8 py-4 text-xl transition-all duration-500 lg:inline-flex"
           >
             Log In
           </Button>
@@ -85,7 +95,7 @@ function Header({ className, variant, size, ...props }: HeaderProps) {
           <Button
             variant="default"
             size="lg"
-            className="hidden cursor-pointer rounded-full border-none bg-blue-500 px-8 py-4 text-xl font-semibold shadow-sm ring-0 transition-all duration-500 ease-in-out hover:bg-transparent hover:text-blue-500 hover:shadow-md lg:inline-flex"
+            className="bg-text-blue hidden cursor-pointer rounded-full border-none px-8 py-4 text-xl font-semibold shadow-sm ring-0 transition-all duration-500 ease-in-out lg:inline-flex"
           >
             Join now
           </Button>
@@ -97,7 +107,7 @@ function Header({ className, variant, size, ...props }: HeaderProps) {
         >
           {isOpen ? <X className="size-8" /> : <Menu className="size-8" />}
         </Button>
-      </header>
+      </div>
 
       {/* Mobile */}
       <div
@@ -117,8 +127,9 @@ function Header({ className, variant, size, ...props }: HeaderProps) {
                 key={link}
                 variant="link"
                 className="text-muted-foreground text-3xl hover:text-blue-500"
+                asChild
               >
-                {link}
+                <a href="#">{link}</a>
               </Button>
             ))}
           </nav>
@@ -141,7 +152,7 @@ function Header({ className, variant, size, ...props }: HeaderProps) {
           </div>
         </div>
       </div>
-    </div>
+    </header>
   );
 }
 
