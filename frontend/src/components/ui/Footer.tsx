@@ -26,7 +26,7 @@ const MAIN_CV = ['Kreator', 'Szablon', 'Wzory', 'Jak napisac', 'Nowoczesne CV'];
 
 const RECRUITMENT_TIPS = [
   'CV po angielsku',
-  'Umiejetnosci do CV',
+  'Umiejśtności do CV',
   'Kompetecje miekkie i twarde',
   'Wyksztalcenie w CV',
   'Mail z CV',
@@ -67,11 +67,11 @@ function Footer({ className, ...props }: FooterProps) {
     <footer
       {...props}
       className={cn(
-        'absolute inset-x-0 max-w-screen bg-blue-50 pt-10 pr-10 pl-10 hover:no-underline',
+        'absolute inset-x-0 max-w-screen bg-blue-50 hover:no-underline',
         className
       )}
     >
-      <div className="flex h-1/10 w-full flex-row justify-between border-b border-slate-200 bg-blue-50 p-6">
+      <div className="flex h-1/10 w-full flex-row justify-between border-b border-slate-200 bg-blue-50">
         <div className="flex flex-col justify-between gap-2">
           <div>
             <h2 className="text-base text-xl font-bold text-pretty text-slate-600 select-none">
@@ -89,7 +89,7 @@ function Footer({ className, ...props }: FooterProps) {
         </div>
       </div>
 
-      <div className="hidden flex-row flex-wrap items-start justify-between gap-12 border-b border-slate-200 p-6 select-none lg:flex">
+      <div className="hidden flex-row flex-wrap items-start justify-between gap-12 border-b border-slate-200 select-none lg:flex">
         {SECTION_MAIN.map((section) => (
           <div
             key={section}
@@ -230,7 +230,7 @@ function Footer({ className, ...props }: FooterProps) {
         </div>
       </div>
 
-      <div className="h-[3rem] pt-4 pl-8 text-xs select-none">
+      <div className="h-[3rem] text-xs select-none">
         <p className="flex items-center justify-start font-semibold text-pretty">
           &copy; Works Limited, wszystkie prawa zastrzezone
         </p>

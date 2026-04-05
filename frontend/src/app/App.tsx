@@ -9,9 +9,11 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <Header />
-      <Hero />
-      <Footer />
+      <div>
+        <Header />
+        <Hero />
+        <Footer />
+      </div>
     </QueryClientProvider>
   );
 }

@@ -14,7 +14,7 @@ function Hero({ className, ...props }: HeroProps) {
     <main
       style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover' }}
       className={cn(
-        'flex min-h-screen max-w-screen flex-col items-center justify-center gap-16 overflow-hidden px-6 py-12 lg:mt-2 lg:flex-row lg:gap-4 lg:px-20 xl:mt-2 xl:flex-row xl:gap-4 xl:px-20',
+        'flex min-h-screen max-w-screen flex-col items-center justify-center gap-16 overflow-hidden lg:mt-2 lg:flex-row lg:gap-4 xl:mt-2 xl:flex-row xl:gap-4',
         className
       )}
       {...props}
@@ -34,7 +34,7 @@ function Hero({ className, ...props }: HeroProps) {
           </span>
         </h1>
         {/* hero-subtitle */}
-        <p className="mx-auto mt-4 max-w-lg text-base leading-relaxed text-pretty text-slate-600 select-none lg:mx-0 lg:text-justify lg:text-lg xl:mx-0 xl:text-lg">
+        <p className="text-text-main mx-auto mt-4 max-w-lg text-base leading-relaxed text-pretty select-none lg:mx-0 lg:text-justify lg:text-lg xl:mx-0 xl:text-lg">
           CV to coś więcej niż dokument. To Twoja przepustka do
           <b> lepszej pracy, wyższych zarobków i życia, jakiego chcesz</b>.
           Stwórz profesjonalne CV w kilka minut.
