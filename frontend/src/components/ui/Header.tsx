@@ -8,11 +8,13 @@ import { cn } from '@/lib/utils.ts';
 import { Button } from './button';
 import { CFuturelogo } from './CFuturelogo';
 
-const NAV_LINKS = [
-  {
-    label: 'Templates',
-    href: '#',
-  },
+type navLinks = {
+  label: string;
+  href: string;
+};
+
+const navLinks: navLinks[] = [
+  { label: 'Template', href: '#' },
   { label: 'Guide', href: '#' },
   { label: 'FAQ', href: '#' },
 ];
@@ -44,6 +46,33 @@ const headerVariants = cva(
   }
 );
 
+// Navigation helper
+const NavItems = ({ isMobile }: { isMobile?: boolean }) => (
+  <nav
+    className={cn(
+      'transition-all duration-500',
+
+      isMobile
+        ? 'flex flex-col gap-5'
+        : 'mr-5 ml-auto hidden items-start gap-2 lg:flex'
+    )}
+  >
+    {navLinks.map((link) => (
+      <Button
+        key={link.label}
+        variant="link"
+        className={cn(
+          'text-text-main hover:text-text-blue cursor-pointer transition-all duration-500 hover:no-underline',
+
+          isMobile ? 'text-3xl' : 'text-xl'
+        )}
+        asChild
+      >
+        <a href={link.href}>{link.label}</a>
+      </Button>
+    ))}
+  </nav>
+);
 interface HeaderProps
   extends
     React.HTMLAttributes<HTMLElement>,
@@ -51,7 +80,6 @@ interface HeaderProps
 
 function Header({ className, variant, size, ...props }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const navLinks: string[] = ['Templates', 'Guid', 'FAQ'];
 
   return (
     <header className="">
@@ -69,18 +97,7 @@ function Header({ className, variant, size, ...props }: HeaderProps) {
 
         {/* navigation section */}
 
-        <nav className="mr-5 ml-auto hidden items-start gap-2 transition-all duration-500 lg:flex">
-          {navLinks.map((link) => (
-            <Button
-              key={link}
-              variant="link"
-              className="text-text-main hover:text-text-blue cursor-pointer text-xl transition-all transition-colors duration-500 ease-in-out hover:no-underline"
-              asChild
-            >
-              <a href="#">{link}</a>
-            </Button>
-          ))}
-        </nav>
+        <NavItems />
 
         {/* login section */}
         <div className="flex items-center gap-3 text-base">
@@ -121,18 +138,7 @@ function Header({ className, variant, size, ...props }: HeaderProps) {
         {/* Mobile navigation section*/}
         <div className="flex h-[calc(100vh-5rem)] flex-col items-center justify-between overflow-y-auto p-10">
           {/* navigation */}
-          <nav className="flex flex-col gap-5 transition-all duration-500">
-            {navLinks.map((link) => (
-              <Button
-                key={link}
-                variant="link"
-                className="text-muted-foreground text-3xl hover:text-blue-500"
-                asChild
-              >
-                <a href="#">{link}</a>
-              </Button>
-            ))}
-          </nav>
+          <NavItems isMobile />
           {/* log in and join now */}
           <div className="flex flex-col gap-2">
             <Button
