@@ -12,7 +12,9 @@ users = APIRouter(tags=["users"])
 
 @users.get("/{user_id}", response_model=UserResponseSchema)
 def get_user_data(
-    user_id: Annotated[int, Path(..., gt=0, description="The ID of the user to retrieve")],
+    user_id: Annotated[
+        int, Path(..., gt=0, description="The ID of the user to retrieve")
+    ],
     db: Session = Depends(get_db),
 ):
     user = db.get(User, user_id)
@@ -21,11 +23,12 @@ def get_user_data(
 
     return user
 
+
 @users.post("/", response_model=UserBase)
 def post_user_data(user: UserBase, db: Session = Depends(get_db)):
     payload = user.model_dump(mode="python")
-    if payload.get('website_url') is not None:
-        payload['website_url'] = str(payload["website_url"])
+    if payload.get("website_url") is not None:
+        payload["website_url"] = str(payload["website_url"])
     db_user = User(**payload)
     try:
         db.add(db_user)
@@ -33,6 +36,8 @@ def post_user_data(user: UserBase, db: Session = Depends(get_db)):
         db.refresh(db_user)
     except ImportError:
         db.rollback()
-        raise HTTPException(status_code=409, detail="Użytkownik o podanym emailu już istnieje")
+        raise HTTPException(
+            status_code=409, detail="Użytkownik o podanym emailu już istnieje"
+        )
 
     return db_user
