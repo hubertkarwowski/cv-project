@@ -25,7 +25,7 @@ class Settings(BaseSettings):
     @property
     def SQLALCHEMY_DATABASE_URI(self) -> PostgresDsn:
         return PostgresDsn.build(
-            scheme="postgresql+pg8000",
+            scheme="postgresql+psycopg2",
             username=self.POSTGRES_USER,
             password=self.POSTGRES_PASSWORD,
             host=self.POSTGRES_SERVER,

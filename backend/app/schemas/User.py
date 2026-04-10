@@ -19,7 +19,7 @@ class UserBase(BaseModel):
     date_of_birth: date
     gender: Optional[Gender] = None
     city: Optional[str] = Field(default=None, min_length=3, max_length=50)
-    citizenship: Optional[str] = None
+    citizenship: Optional[str] = Field(default=None, max_length=100)
     website_url: Optional[HttpUrl] = None
 
     @field_validator("first_name", "last_name", "city", mode="before")
