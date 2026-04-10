@@ -18,8 +18,8 @@ class Settings(BaseSettings):
     POSTGRES_SERVER: str
     POSTGRES_PORT: int = 5432
     POSTGRES_USER: str
-    POSTGRES_PASSWORD: str = ""
-    POSTGRES_DB: str = ""
+    POSTGRES_PASSWORD: str 
+    POSTGRES_DB: str 
 
     @computed_field  # type: ignore[prop-decorator]
     @property

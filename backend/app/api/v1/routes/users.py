@@ -2,6 +2,7 @@ from typing_extensions import Annotated
 
 from fastapi import APIRouter, Depends, HTTPException, Path
 from sqlalchemy.orm import Session
+from sqlalchemy.exc import IntegrityError
 
 from app.db.db import get_db
 from app.models.user import User
@@ -24,7 +25,7 @@ def get_user_data(
     return user
 
 
-@users.post("/", response_model=UserBase)
+@users.post("/", response_model=UserResponseSchema)
 def post_user_data(user: UserBase, db: Session = Depends(get_db)):
     payload = user.model_dump(mode="python")
     if payload.get("website_url") is not None:
@@ -34,7 +35,7 @@ def post_user_data(user: UserBase, db: Session = Depends(get_db)):
         db.add(db_user)
         db.commit()
         db.refresh(db_user)
-    except ImportError:
+    except IntegrityError:
         db.rollback()
         raise HTTPException(
             status_code=409, detail="Użytkownik o podanym emailu już istnieje"
