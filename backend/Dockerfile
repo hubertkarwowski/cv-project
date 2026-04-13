@@ -14,4 +14,4 @@ RUN addgroup -S app && adduser -S app -G app && chown -R app:app /app
 
 USER app
 
-CMD ["fastapi", "dev", "--host", "0.0.0.0"]
+CMD ["uv", "run", "fastapi", "dev", "--host", "0.0.0.0"]
