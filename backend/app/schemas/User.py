@@ -1,7 +1,7 @@
 from datetime import date
 from enum import Enum
 from typing import Optional
-from pydantic import BaseModel, EmailStr, Field, HttpUrl, field_validator
+from pydantic import BaseModel, ConfigDict, EmailStr, Field, HttpUrl, field_validator
 
 
 class Gender(str, Enum):
@@ -11,6 +11,8 @@ class Gender(str, Enum):
 
 
 class UserBase(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     first_name: str = Field(min_length=3, max_length=30)
     last_name: str = Field(min_length=3, max_length=50)
     email: EmailStr = Field(max_length=255)
@@ -19,7 +21,7 @@ class UserBase(BaseModel):
     date_of_birth: date
     gender: Optional[Gender] = None
     city: Optional[str] = Field(default=None, min_length=3, max_length=50)
-    citizenship: Optional[str] = None
+    citizenship: Optional[str] = Field(default=None, max_length=100)
     website_url: Optional[HttpUrl] = None
 
     @field_validator("first_name", "last_name", "city", mode="before")
@@ -49,4 +51,6 @@ class UserBase(BaseModel):
 
 
 class UserResponseSchema(UserBase):
+    model_config = ConfigDict(from_attributes=True)
+
     id: int
