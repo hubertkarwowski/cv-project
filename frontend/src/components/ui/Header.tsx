@@ -7,12 +7,14 @@ import { cn } from '@/lib/utils.ts';
 import { Button } from './button';
 import { CFuturelogo } from './CFuturelogo';
 
+// Data Nav helper
 const navLinks = [
   { label: 'Template', href: '#' },
   { label: 'Guide', href: '#' },
   { label: 'FAQ', href: '#' },
 ];
 
+// Nav helper
 const NavItems = ({
   isMobile,
   onLinkClick,
@@ -28,6 +30,7 @@ const NavItems = ({
         : 'mr-8 ml-auto hidden items-center lg:flex'
     )}
   >
+    {/* Nav-links */}
     {navLinks.map((link) => (
       <a
         key={link.label}
@@ -44,21 +47,37 @@ const NavItems = ({
   </nav>
 );
 
+// Auth buttons helper
 const AuthButtons = ({ isMobile }: { isMobile?: boolean }) => (
   <div
-    className={cn('flex gap-3', isMobile ? 'w-full flex-col' : 'items-center')}
+    className={cn(
+      'flex gap-3',
+      isMobile ? 'w-full flex-col gap-6 font-sans' : 'items-center'
+    )}
   >
+    {/* Btn-log-in */}
     <Button
       variant="outline"
-      className="border-border hover:border-btn-blue text-text-main hover:text-btn-blue h-10 rounded-full bg-transparent px-8 text-xl font-medium duration-500 hover:bg-transparent"
+      className={cn(
+        isMobile
+          ? 'border-border text-bold text-text-main h-10 w-full rounded-full py-6 text-3xl'
+          : 'border-border hover:border-btn-blue text-text-main hover:text-btn-blue h-10 rounded-full bg-transparent px-8 text-xl font-medium duration-500 hover:bg-transparent'
+      )}
       asChild
     >
       <a href="#">Log In</a>
     </Button>
+    {/* Btn-join-now */}
     <Button
-      className="bg-btn-blue hover:!bg-btn-blue h-10 rounded-full px-8 text-xl font-medium text-white duration-500"
+      variant="outline"
+      className={cn(
+        isMobile
+          ? 'bg-btn-blue hover:!bg-btn-blue h-10 rounded-full px-8 py-6 text-3xl font-medium text-white duration-500'
+          : 'bg-btn-blue hover:!bg-btn-blue h-10 rounded-full px-8 text-xl font-medium text-white duration-500'
+      )}
       asChild
     >
+      {/*  */}
       <a href="#">Join Now</a>
     </Button>
   </div>
@@ -68,13 +87,15 @@ export function Header() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <header className="border-border fixed top-0 left-0 z-50 flex h-20 w-full items-center justify-between border-b bg-white px-6 backdrop-blur-md">
+    // header
+    <header className="order-border fixed top-0 left-0 z-50 flex h-20 w-full items-center justify-between border-b bg-white px-6 pr-10 pl-10 backdrop-blur-md">
+      {/* Logo */}
       <div className="flex items-center select-none">
         <CFuturelogo />
       </div>
-
+      {/* Nav-items */}
       <NavItems />
-
+      {/* Auth-button */}
       <div className="hidden lg:flex">
         <AuthButtons />
       </div>
@@ -84,7 +105,6 @@ export function Header() {
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild>
             <Button variant="ghost" size="icon" className="h-10 w-10">
-              {/* Zamiana ikony w zależności od stanu */}
               {isOpen ? (
                 <X className="!h-6 !w-6" />
               ) : (

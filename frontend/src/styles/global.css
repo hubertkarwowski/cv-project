@@ -46,6 +46,10 @@ body {
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-footer: var(--footer-bg);
+  --color-footer-head: var(--footer-heading);
+  --color-footer-link: var(--footer-text);
+  --color-footer-copy: var(--footer-muted);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -105,6 +109,10 @@ body {
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --footer-bg: oklch(0.208 0.042 265.755);
+  --footer-heading: oklch(0.929 0.013 255.508);
+  --footer-text: oklch(0.704 0.04 256.788);
+  --footer-muted: oklch(0.552 0.016 255.885);
 }
 
 .dark {
@@ -139,6 +147,7 @@ body {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --footer: oklch(0.208 0.042 265.755);
 }
 
 @layer base {
