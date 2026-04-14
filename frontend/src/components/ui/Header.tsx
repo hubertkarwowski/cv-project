@@ -72,7 +72,7 @@ const AuthButtons = ({ isMobile }: { isMobile?: boolean }) => (
       variant="outline"
       className={cn(
         isMobile
-          ? 'bg-btn-blue hover:!bg-btn-blue h-10 rounded-full px-8 py-6 text-3xl font-medium text-white duration-500'
+          ? 'bg-btn-blue h-10 rounded-full px-8 py-6 text-3xl font-medium text-white duration-500'
           : 'bg-btn-blue hover:!bg-btn-blue h-10 rounded-full px-8 text-xl font-medium text-white duration-500'
       )}
       asChild
@@ -88,7 +88,7 @@ export function Header() {
 
   return (
     // header
-    <header className="order-border fixed top-0 left-0 z-50 flex h-20 w-full items-center justify-between border-b bg-white px-6 pr-10 pl-10 backdrop-blur-md">
+    <header className="order-border fixed top-0 left-0 z-50 flex h-20 w-full items-center justify-between border-b bg-white/80 px-6 pr-10 pl-10 backdrop-blur-md">
       {/* Logo */}
       <div className="flex items-center select-none">
         <CFuturelogo />
