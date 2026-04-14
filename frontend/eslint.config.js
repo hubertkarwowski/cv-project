@@ -127,7 +127,7 @@ export default defineConfig([
         'error',
         {
           case: 'kebabCase',
-          ignore: ['^[A-Z][a-zA-Z0-9]*\\.tsx$'],
+          ignore: ['^[A-Z][a-zA-Z0-9]*\\.tsx$', '^use[A-Z][a-zA-Z0-9]*\\.ts'],
         },
       ],
     },
