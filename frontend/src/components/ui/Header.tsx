@@ -60,8 +60,8 @@ const AuthButtons = ({ isMobile }: { isMobile?: boolean }) => (
       variant="outline"
       className={cn(
         isMobile
-          ? 'border-border text-bold text-text-main h-10 w-full rounded-full py-6 text-3xl'
-          : 'border-border hover:border-btn-blue text-text-main hover:text-btn-blue h-10 rounded-full bg-transparent px-8 text-xl font-medium duration-500 hover:bg-transparent'
+          ? 'border-text-main text-bold text-text-main h-10 w-full rounded-full py-6 text-3xl'
+          : 'border-text-main hover:border-btn-blue text-text-main hover:text-btn-blue h-10 rounded-full bg-transparent px-8 text-xl font-medium duration-500 hover:bg-transparent'
       )}
       asChild
     >
@@ -73,7 +73,7 @@ const AuthButtons = ({ isMobile }: { isMobile?: boolean }) => (
       className={cn(
         isMobile
           ? 'bg-btn-blue h-10 rounded-full px-8 py-6 text-3xl font-medium text-white duration-500'
-          : 'bg-btn-blue hover:!bg-btn-blue h-10 rounded-full px-8 text-xl font-medium text-white duration-500'
+          : 'bg-btn-blue hover:!bg-btn-blue h-10 rounded-full px-8 text-xl font-medium text-white duration-500 hover:!text-white'
       )}
       asChild
     >

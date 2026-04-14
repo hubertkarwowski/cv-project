@@ -29,13 +29,15 @@ function Hero({ className, ...props }: HeroProps) {
           <CFuturelogo className="text-background mb-1 scale-80 justify-center md:mt-10 lg:mb-4 lg:scale-none lg:justify-start" />
 
           <span className="text-4xl lg:text-6xl">
-            <h1>Tu się zaczyna</h1>
+            <h1 className="text-2xl lg:text-5xl 2xl:text-6xl">
+              Tu się zaczyna
+            </h1>
           </span>
           <span>
-            <p className="text-text-background px-0 text-4xl uppercase lg:inline lg:text-6xl">
+            <p className="text-text-background px-0 text-5xl uppercase lg:inline 2xl:text-6xl">
               Twoja{' '}
             </p>
-            <p className="bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-5xl break-words text-transparent uppercase antialiased lg:inline lg:text-6xl">
+            <p className="bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-4xl break-words text-transparent uppercase antialiased lg:inline lg:text-5xl 2xl:text-6xl">
               przyszłość
             </p>
           </span>
@@ -69,7 +71,7 @@ function Hero({ className, ...props }: HeroProps) {
       </div>
 
       {/* hero-image */}
-      <div className="${TABLET_BREAKPOINT}:mt-100 mt-22 w-full max-w-md scale-140 sm:hidden md:mt-16 md:scale-120 lg:order-2 lg:block lg:max-w-full lg:scale-160 lg:transform xl:order-2 xl:block xl:max-w-1/2 xl:scale-160 xl:transform">
+      <div className="mt-22 w-full max-w-md scale-140 sm:hidden md:mt-16 md:scale-120 lg:order-2 lg:block lg:max-w-full lg:scale-160 lg:transform xl:order-2 xl:block xl:max-w-1/2 xl:scale-160 xl:transform">
         <img
           className="h-auto w-full object-contain select-none"
           src={heroimage}
