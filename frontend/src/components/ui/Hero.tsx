@@ -24,24 +24,20 @@ function Hero({ className, ...props }: HeroProps) {
       {/* hero-content */}
       <div className="order-2 flex w-full flex-col gap-3 text-center sm:mt-2 lg:order-1 lg:text-left xl:order-1 xl:text-left">
         {/* hero-title */}
-        <h1 className="flex flex-col items-center gap-3 text-center font-extrabold tracking-tight lg:items-start lg:text-left lg:select-none">
+        <div className="flex flex-col items-center gap-3 text-center font-extrabold tracking-tight lg:items-start lg:text-left lg:select-none">
           {/* logo */}
           <CFuturelogo className="text-background mb-1 scale-80 justify-center md:mt-10 lg:mb-4 lg:scale-none lg:justify-start" />
 
-          <span className="text-4xl lg:text-6xl">
-            <h1 className="text-2xl lg:text-5xl 2xl:text-6xl">
-              Tu się zaczyna
-            </h1>
-          </span>
-          <span>
-            <p className="text-text-background px-0 text-5xl uppercase lg:inline 2xl:text-6xl">
+          <h1 className="text-2xl lg:text-5xl 2xl:text-6xl">
+            <span className="block">Tu się zaczyna</span>
+            <span className="text-text-background px-0 text-5xl uppercase lg:inline 2xl:text-6xl">
               Twoja{' '}
-            </p>
-            <p className="bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-4xl break-words text-transparent uppercase antialiased lg:inline lg:text-5xl 2xl:text-6xl">
+            </span>
+            <span className="bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-4xl break-words text-transparent uppercase antialiased lg:inline lg:text-5xl 2xl:text-6xl">
               przyszłość
-            </p>
-          </span>
-        </h1>
+            </span>
+          </h1>
+        </div>
         {/* hero-subtitle */}
         <p className="text-text-background tracking-2 wrap enter mx-auto max-w-xl text-center font-[500] text-pretty break-words select-none lg:mx-0 lg:text-justify lg:text-lg xl:text-xl">
           CV to coś więcej niż dokument. To Twoja przepustka do
@@ -71,7 +67,7 @@ function Hero({ className, ...props }: HeroProps) {
       </div>
 
       {/* hero-image */}
-      <div className="mt-22 w-full max-w-md scale-140 sm:hidden md:mt-16 md:scale-120 lg:order-2 lg:block lg:max-w-full lg:scale-160 lg:transform xl:order-2 xl:block xl:max-w-1/2 xl:scale-160 xl:transform">
+      <div className="mt-22 w-full max-w-md scale-140 md:mt-16 md:scale-120 lg:order-2 lg:max-w-full lg:scale-160 lg:transform xl:order-2 xl:max-w-1/2 xl:scale-160 xl:transform">
         <img
           className="h-auto w-full object-contain select-none"
           src={heroimage}

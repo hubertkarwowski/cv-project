@@ -147,7 +147,11 @@ body {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-  --footer: oklch(0.208 0.042 265.755);
+
+  --footer-bg: oklch(0.208 0.042 265.755);
+  --footer-heading: oklch(0.929 0.013 255.508);
+  --footer-text: oklch(0.704 0.04 256.788);
+  --footer-muted: oklch(0.552 0.016 255.885);
 }
 
 @layer base {

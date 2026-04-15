@@ -91,7 +91,7 @@ function Footer({ className, ...props }: FooterProps) {
               <Button
                 key={link}
                 variant="link"
-                className="duration-00 text-footer-link h-auto w-full cursor-pointer justify-start px-0 text-left text-base font-medium text-pretty transition-colors duration-300 hover:text-white hover:no-underline"
+                className="text-footer-link h-auto w-full cursor-pointer justify-start px-0 text-left text-base font-medium text-pretty transition-colors duration-300 hover:text-white hover:no-underline"
               >
                 {link}
               </Button>
@@ -212,10 +212,10 @@ function Footer({ className, ...props }: FooterProps) {
               kontakt@cfuture.com
             </a>
             <div className="flex w-full flex-row items-center justify-center gap-1 lg:-ml-1.5">
-              <a className="text-footer-link cursor-pointer p-1.5">
+              <a href="#" className="text-footer-link cursor-pointer p-1.5">
                 <Linkedin className="size-8 lg:size-5" />
               </a>
-              <a className="text-footer-link cursor-pointer p-1.5">
+              <a href="#" className="text-footer-link cursor-pointer p-1.5">
                 <Instagram className="size-8 lg:size-5" />
               </a>
             </div>
@@ -227,9 +227,9 @@ function Footer({ className, ...props }: FooterProps) {
               Wybierz region
             </h1>
             <div className="mt-3 block flex h-full w-full min-w-full flex-row items-center justify-center">
-              <Select>
+              <Select defaultValue="Polska">
                 <SelectTrigger>
-                  <SelectValue placeholder="Polska" />
+                  <SelectValue />
                 </SelectTrigger>
 
                 <SelectContent onCloseAutoFocus={(e) => e.preventDefault()}>

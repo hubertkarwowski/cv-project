@@ -16,7 +16,7 @@ function CFuturelogo({ className, ...props }: CFuturelogoProps) {
       <div className="text-primary-foreground flex size-8 items-center justify-center rounded-lg bg-blue-500 text-xl font-bold md:size-8">
         C
       </div>
-      <span className="text-foreground sd:size-8 text-2xl font-bold tracking-tight">
+      <span className="text-foreground text-2xl font-bold tracking-tight">
         Future
       </span>
     </div>

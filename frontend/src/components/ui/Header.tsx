@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Menu, X } from 'lucide-react';
 
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import { cn } from '@/lib/utils.ts';
+import { cn } from '@/lib/utils';
 
 import { Button } from './button';
 import { CFuturelogo } from './CFuturelogo';
@@ -88,7 +88,8 @@ export function Header() {
 
   return (
     // header
-    <header className="order-border fixed top-0 left-0 z-50 flex h-20 w-full items-center justify-between border-b bg-white/80 px-6 pr-10 pl-10 backdrop-blur-md">
+    <header className="fixed top-0 left-0 z-50 flex h-20 w-full items-center justify-between border-b bg-white/80 px-6 pr-10 pl-10 backdrop-blur-md">
+      {' '}
       {/* Logo */}
       <div className="flex items-center select-none">
         <CFuturelogo />
@@ -99,7 +100,6 @@ export function Header() {
       <div className="hidden lg:flex">
         <AuthButtons />
       </div>
-
       {/* Mobile Menu */}
       <div className="lg:hidden">
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
