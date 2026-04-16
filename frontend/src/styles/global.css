@@ -5,7 +5,28 @@
 
 @custom-variant dark (&:is(.dark *));
 
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable !important;
+}
+
+body {
+  width: 100% !important;
+  overflow-x: hidden !important;
+  position: relative !important;
+  padding-right: 0px !important;
+  margin-right: 0px !important;
+}
+
+[data-radix-scroll-lock] {
+  padding-right: 0px !important;
+  margin-right: 0px !important;
+}
+
 @theme inline {
+  --color-text-main: var(--text-main);
+  --color-text-blue: var(--text-blue);
+  --color-btn-blue: var(--btn-blue);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -25,6 +46,10 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
+  --color-footer: var(--footer-bg);
+  --color-footer-head: var(--footer-heading);
+  --color-footer-link: var(--footer-text);
+  --color-footer-copy: var(--footer-muted);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -56,7 +81,10 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --btn-blue: oklch(0.546 0.245 262.881);
+  --text-blue: oklch(0.546 0.245 262.881);
+  --text-main: oklch(0.556 0 0);
+  --primary: oklch(0.424 0.199 265.638);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -81,6 +109,10 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --footer-bg: oklch(0.208 0.042 265.755);
+  --footer-heading: oklch(0.929 0.013 255.508);
+  --footer-text: oklch(0.704 0.04 256.788);
+  --footer-muted: oklch(0.552 0.016 255.885);
 }
 
 .dark {
@@ -115,6 +147,11 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  --footer-bg: oklch(0.208 0.042 265.755);
+  --footer-heading: oklch(0.929 0.013 255.508);
+  --footer-text: oklch(0.704 0.04 256.788);
+  --footer-muted: oklch(0.552 0.016 255.885);
 }
 
 @layer base {
