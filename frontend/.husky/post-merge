@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
-changed=$(git diff HEAD@{1} HEAD --name-only) 
+changed=$(git diff HEAD@{1} HEAD --name-only)
 
 if echo "$changed" | grep -qE "package-lock\.json|package\.json"; then
-  echo "📦 package.json changed, running npm install..."
-  npm install
+  echo "📦 package.json or package-lock.json changed, running npm ci..."
+  (cd frontend && npm ci)
 fi
