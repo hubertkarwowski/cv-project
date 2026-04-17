@@ -3,7 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 
 type UseZodFormProps<T extends z.ZodObject> = Omit<
-  UseFormProps<z.input<T>, unknown, z.output<T>>, // ← all 3 params here
+  UseFormProps<z.input<T>, unknown, z.output<T>>,
   'resolver'
 > & {
   schema: T;
