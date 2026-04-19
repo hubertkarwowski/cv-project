@@ -5,22 +5,14 @@
 
 @custom-variant dark (&:is(.dark *));
 
-html {
-  overflow-y: scroll;
-  scrollbar-gutter: stable !important;
-}
-
-body {
-  width: 100% !important;
-  overflow-x: hidden !important;
-  position: relative !important;
-  padding-right: 0px !important;
-  margin-right: 0px !important;
-}
-
 [data-radix-scroll-lock] {
-  padding-right: 0px !important;
-  margin-right: 0px !important;
+  padding-right: 0px;
+  margin-right: 0px;
+}
+
+h2 {
+  font-size: 3rem;
+  font-weight: 700;
 }
 
 @theme inline {
@@ -147,7 +139,6 @@ body {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
-
   --footer-bg: oklch(0.208 0.042 265.755);
   --footer-heading: oklch(0.929 0.013 255.508);
   --footer-text: oklch(0.704 0.04 256.788);

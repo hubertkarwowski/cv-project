@@ -7,14 +7,12 @@ import { cn } from '@/lib/utils';
 import { Button } from './button';
 import { CFuturelogo } from './CFuturelogo';
 
-// Data Nav helper
 const navLinks = [
   { label: 'Template', href: '#' },
   { label: 'Guide', href: '#' },
   { label: 'FAQ', href: '#' },
 ];
 
-// Nav helper
 const NavItems = ({
   isMobile,
   onLinkClick,
@@ -30,7 +28,6 @@ const NavItems = ({
         : 'mr-8 ml-auto hidden items-center lg:flex'
     )}
   >
-    {/* Nav-links */}
     {navLinks.map((link) => (
       <a
         key={link.label}
@@ -47,7 +44,6 @@ const NavItems = ({
   </nav>
 );
 
-// Auth buttons helper
 const AuthButtons = ({ isMobile }: { isMobile?: boolean }) => (
   <div
     className={cn(
@@ -55,7 +51,6 @@ const AuthButtons = ({ isMobile }: { isMobile?: boolean }) => (
       isMobile ? 'w-full flex-col gap-6 font-sans' : 'items-center'
     )}
   >
-    {/* Btn-log-in */}
     <Button
       variant="outline"
       className={cn(
@@ -67,7 +62,7 @@ const AuthButtons = ({ isMobile }: { isMobile?: boolean }) => (
     >
       <a href="#">Log In</a>
     </Button>
-    {/* Btn-join-now */}
+
     <Button
       variant="outline"
       className={cn(
@@ -77,7 +72,6 @@ const AuthButtons = ({ isMobile }: { isMobile?: boolean }) => (
       )}
       asChild
     >
-      {/*  */}
       <a href="#">Join Now</a>
     </Button>
   </div>
@@ -87,20 +81,15 @@ export function Header() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    // header
     <header className="fixed top-0 left-0 z-50 flex h-20 w-full items-center justify-between border-b bg-white/80 px-6 pr-10 pl-10 backdrop-blur-md">
       {' '}
-      {/* Logo */}
-      <div className="flex items-center select-none">
+      <div className="flex items-center">
         <CFuturelogo />
       </div>
-      {/* Nav-items */}
       <NavItems />
-      {/* Auth-button */}
       <div className="hidden lg:flex">
         <AuthButtons />
       </div>
-      {/* Mobile Menu */}
       <div className="lg:hidden">
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetTrigger asChild>
@@ -114,7 +103,7 @@ export function Header() {
           </SheetTrigger>
 
           <SheetContent side="top" className="bg-white">
-            <div className="flex h-screen flex-col justify-between gap-4 py-10">
+            <div className="flex h-screen flex-col justify-between gap-4 py-10 pr-10 pl-10">
               <NavItems isMobile onLinkClick={() => setIsOpen(false)} />
 
               <AuthButtons isMobile />

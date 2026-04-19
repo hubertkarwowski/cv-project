@@ -5,7 +5,7 @@ import heroimage from '@/assets/heroimage.png';
 import { cn } from '@/lib/utils';
 
 import { Button } from './button';
-import { CFuturelogo } from './CFuturelogo';
+// import { CFuturelogo } from './CFuturelogo';
 
 type HeroProps = {
   className?: string;
@@ -21,25 +21,15 @@ function Hero({ className, ...props }: HeroProps) {
       )}
       {...props}
     >
-      {/* hero-content */}
-      <div className="order-2 flex w-full flex-col gap-3 text-center sm:mt-2 lg:order-1 lg:text-left xl:order-1 xl:text-left">
-        {/* hero-title */}
-        <div className="flex flex-col items-center gap-3 text-center font-extrabold tracking-tight lg:items-start lg:text-left lg:select-none">
-          {/* logo */}
-          <CFuturelogo className="text-background mb-1 scale-80 justify-center md:mt-10 lg:mb-4 lg:scale-none lg:justify-start" />
+      <div className="text-sidebar-primary order-2 flex w-full flex-col gap-3 text-center sm:mt-2 lg:order-1 lg:text-left xl:order-1 xl:text-left">
+        {/* <CFuturelogo className="text-background mb-1 scale-80 justify-center md:mt-10 lg:mb-4 lg:scale-none lg:justify-start" /> */}
 
-          <h1 className="text-2xl lg:text-5xl 2xl:text-6xl">
-            <span className="block">Tu się zaczyna</span>
-            <span className="text-text-background px-0 text-5xl uppercase lg:inline 2xl:text-6xl">
-              Twoja{' '}
-            </span>
-            <span className="bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-4xl break-words text-transparent uppercase antialiased lg:inline lg:text-5xl 2xl:text-6xl">
-              przyszłość
-            </span>
-          </h1>
-        </div>
-        {/* hero-subtitle */}
-        <p className="text-text-background tracking-2 wrap enter mx-auto max-w-xl text-center font-[500] text-pretty break-words select-none lg:mx-0 lg:text-justify lg:text-lg xl:text-xl">
+        <h2 className="block">TU SIE ZACZYNA</h2>
+        <h2 className="px-0 text-5xl lg:inline 2xl:text-6xl">
+          TWOJA PRZYSZŁOŚĆ
+        </h2>
+
+        <p className="text-text-background tracking-2 wrap enter mx-auto max-w-xl text-center font-[500] text-pretty break-words lg:mx-0 lg:text-justify lg:text-lg xl:text-xl">
           CV to coś więcej niż dokument. To Twoja przepustka do
           <b className="font-[700]">
             {' '}
@@ -47,29 +37,28 @@ function Hero({ className, ...props }: HeroProps) {
           </b>
           . Stwórz profesjonalne CV w kilka minut.
         </p>
-        {/* hero-cta */}
+
         <div className="flex flex-col gap-4 sm:flex-row sm:justify-center lg:justify-start">
           <Button
             variant="default"
-            className="w-full cursor-pointer rounded-full bg-blue-600 px-8 py-6 text-lg sm:w-auto"
-          >
-            <Plus className="size-5"></Plus>
-            <span>Stwórz CV online</span>
-          </Button>
-          <Button
-            variant="default"
-            className="border-border w-full cursor-pointer rounded-full bg-white px-8 py-6 text-lg font-[600] text-slate-600 sm:w-auto"
+            className="border-border text-sidebar-primary w-full cursor-pointer rounded-full bg-white px-8 py-6 text-lg font-[600] sm:w-auto"
           >
             <Wand2 className="size-5"></Wand2>
             <span>Ulepsz swoje CV</span>
           </Button>
+          <Button
+            variant="default"
+            className="bg-btn-blue w-full cursor-pointer rounded-full px-8 py-6 text-lg text-white sm:w-auto"
+          >
+            <Plus className="size-5"></Plus>
+            <span>Stwórz CV online</span>
+          </Button>
         </div>
       </div>
 
-      {/* hero-image */}
       <div className="mt-22 w-full max-w-md scale-140 md:mt-16 md:scale-120 lg:order-2 lg:max-w-full lg:scale-160 lg:transform xl:order-2 xl:max-w-1/2 xl:scale-160 xl:transform">
         <img
-          className="h-auto w-full object-contain select-none"
+          className="h-auto w-full object-contain"
           src={heroimage}
           draggable="false"
           alt="Hero illustration"
