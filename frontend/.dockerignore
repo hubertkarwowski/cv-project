@@ -1,0 +1,13 @@
+node_modules/
+dist/
+.env
+.env.*
+.git/
+.gitignore
+*.log
+.DS_Store
+coverage/
+.vite/
+docs/
+husky/
+vscode/

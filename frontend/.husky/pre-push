@@ -1,0 +1,30 @@
+#!/usr/bin/env sh
+ALLOWED_TYPES="feat|fix|chore|docs|refactor|test"
+
+BRANCH_NAME=$(git symbolic-ref --short HEAD)
+
+PATTERN="^(${ALLOWED_TYPES})\/[a-z0-9._-]+$"
+
+case "$BRANCH_NAME" in
+  (main|master|develop) exit 0;;
+esac
+
+if ! printf '%s\n' "$BRANCH_NAME" | grep -Eq "$PATTERN"; then
+  echo "❌ Invalid branch name: '$BRANCH_NAME'"
+  echo ""
+  echo "✅ Expected format:"
+  echo "   <type>/<scope>"
+  echo ""
+  echo "✅ Allowed types:"
+  echo "   feat, fix, chore, docs, refactor, test"
+  echo ""
+  echo "📌 Examples:"
+  echo "   feat/task-123"
+  echo "   fix/login-bug"
+  echo "   chore/update-deps"
+  echo ""
+  exit 1
+fi
+
+echo "✅ Branch name '$BRANCH_NAME' is valid"
+exit 0
