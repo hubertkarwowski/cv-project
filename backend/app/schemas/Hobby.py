@@ -11,6 +11,7 @@ class HobbyValidator:
         return v.strip().capitalize()
 
 
+
 class HobbyBase(BaseModel, HobbyValidator):
     model_config = ConfigDict(from_attributes=True)
 
