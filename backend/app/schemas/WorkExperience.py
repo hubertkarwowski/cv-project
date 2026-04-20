@@ -56,4 +56,5 @@ class WorkExperienceUpdate(BaseModel, WorkExperienceValidator):
 
 class WorkExperienceResponseSchema(WorkExperienceBase):
     model_config = ConfigDict(from_attributes=True)
+
     id: int
