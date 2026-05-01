@@ -52,11 +52,10 @@ const AuthButtons = ({ isMobile }: { isMobile?: boolean }) => (
     )}
   >
     <Button
-      variant="outline"
       className={cn(
         isMobile
           ? 'border-text-main text-bold text-text-main h-10 w-full rounded-full py-6 text-3xl'
-          : 'border-text-main hover:border-btn-blue text-text-main hover:text-btn-blue h-10 rounded-full bg-transparent px-8 text-xl font-medium duration-500 hover:bg-transparent'
+          : 'border-footer-text hover:border-btn-blue text-text-main hover:text-btn-blue h-10 rounded-full bg-transparent px-8 text-xl font-medium duration-500 hover:!bg-white'
       )}
       asChild
     >
@@ -64,11 +63,10 @@ const AuthButtons = ({ isMobile }: { isMobile?: boolean }) => (
     </Button>
 
     <Button
-      variant="outline"
       className={cn(
         isMobile
           ? 'bg-btn-blue h-10 rounded-full px-8 py-6 text-3xl font-medium text-white duration-500'
-          : 'bg-btn-blue hover:!bg-btn-blue h-10 rounded-full px-8 text-xl font-medium text-white duration-500 hover:!text-white'
+          : 'bg-text-blue hover:!bg-text-blue h-10 rounded-full px-8 text-xl font-medium text-white duration-500 hover:!text-white'
       )}
       asChild
     >
@@ -81,7 +79,7 @@ export function Header() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <header className="fixed top-0 left-0 z-50 flex h-20 w-full items-center justify-between border-b bg-white/80 px-6 pr-10 pl-10 backdrop-blur-md">
+    <header className="sticky top-0 left-0 z-50 flex h-20 w-full items-center justify-between border-b bg-white/80 px-10 backdrop-blur-md">
       {' '}
       <div className="flex items-center">
         <CFuturelogo />
@@ -103,7 +101,7 @@ export function Header() {
           </SheetTrigger>
 
           <SheetContent side="top" className="bg-white">
-            <div className="flex h-screen flex-col justify-between gap-4 py-10 pr-10 pl-10">
+            <div className="flex h-screen flex-col justify-between gap-4 px-10 py-10">
               <NavItems isMobile onLinkClick={() => setIsOpen(false)} />
 
               <AuthButtons isMobile />

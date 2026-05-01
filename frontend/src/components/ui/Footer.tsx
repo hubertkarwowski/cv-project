@@ -14,61 +14,48 @@ type FooterProps = {
   className?: string;
 };
 
-const MAIN_CV = ['Kreator', 'Szablon', 'Wzory', 'Jak napisac', 'Nowoczesne CV'];
-
-const RECRUITMENT_TIPS = [
-  'CV po angielsku',
-  'Umiejętności do CV',
-  'Kompetecje miekkie i twarde',
-  'Wyksztalcenie w CV',
-  'Mail z CV',
-  'Rozmowa kwalifikacyjna',
-];
-
-const HELP = ['O nas', 'Kontakt'];
-
-const FOOTER_DATA: Record<string, string[]> = {
-  CV: MAIN_CV,
-  Porady: RECRUITMENT_TIPS,
-  Pomoc: HELP,
+type FooterSection = {
+  title: string;
+  link: string[];
 };
 
-const SECTION_MAIN = ['CV', 'Porady', 'Pomoc'];
+const footersection: FooterSection[] = [
+  { title: 'CV', link: ['Kreator', 'Szablon', 'Wzory', 'Jak napisac'] },
+  {
+    title: 'Porady',
+    link: ['CV po angielsku', 'Szablon', 'Wzory', 'Jak napisac'],
+  },
+  { title: 'Pomoc', link: ['O nas', 'Kontakt'] },
+];
 
 function Footer({ className, ...props }: FooterProps) {
   return (
     <footer
       {...props}
       className={cn(
-        'bg-footer flex max-w-screen flex-col gap-6 p-10 font-sans text-xl hover:no-underline',
+        'bg-footer flex max-w-screen flex-col gap-6 px-16 pb-10 font-sans text-xl hover:no-underline',
         className
       )}
     >
       <div className="bg-footer flex w-full flex-row justify-center py-6 lg:items-start lg:justify-start">
         {' '}
         <div className="flex flex-col items-center justify-center gap-2 lg:items-start lg:justify-start">
-          {' '}
-          <h2 className="text-footer-head flex flex-wrap items-center justify-center gap-x-2 text-center leading-relaxed font-bold tracking-normal lg:text-left lg:text-2xl">
-            <span className="text-footer-head text-xl font-medium lg:text-2xl">
-              Stworzony przez Profesjonalistów
-            </span>{' '}
-            <span className="from-footer-link to-footer-head block bg-gradient-to-r bg-clip-text text-3xl font-bold text-transparent lg:inline lg:text-2xl lg:text-4xl">
-              dla Profesjonalistów
-            </span>
+          <h2 className="text-footer-head text-center text-3xl lg:text-left lg:text-2xl">
+            Stworzone przez profesjonalistów dla profesjonalistów
           </h2>
         </div>
       </div>
 
       <div className="hidden flex-row flex-wrap items-start justify-between gap-12 lg:flex">
-        {SECTION_MAIN.map((section) => (
+        {footersection.map((section) => (
           <div
-            key={section}
+            key={section.title}
             className="flex flex-col items-start gap-3 font-medium"
           >
-            <h1 className="text-footer-head pt-2 text-left text-lg font-bold tracking-tight text-pretty">
-              {section}
-            </h1>
-            {FOOTER_DATA[section]?.map((link) => (
+            <h2 className="text-footer-head pt-2 text-left text-lg font-bold tracking-tight text-pretty">
+              {section.title}
+            </h2>
+            {section.link.map((link) => (
               <Button
                 key={link}
                 variant="link"
@@ -82,9 +69,9 @@ function Footer({ className, ...props }: FooterProps) {
 
         <div className="flex flex-col items-start gap-6 font-medium">
           <div className="flex flex-col items-center gap-3 text-center lg:items-start">
-            <h1 className="text-footer-head pt-2 text-left text-lg font-bold tracking-tight text-pretty">
+            <h2 className="text-footer-head pt-2 text-left text-lg font-bold tracking-tight text-pretty">
               Kontakt
-            </h1>
+            </h2>
 
             <div className="flex flex-row gap-4 lg:flex-col lg:gap-4">
               <a
@@ -127,17 +114,18 @@ function Footer({ className, ...props }: FooterProps) {
 
       <div className="w-full lg:hidden">
         <Accordion type="single" collapsible className="w-full">
-          {SECTION_MAIN.map((section) => (
+          {/* Mapowanie istniejących sekcji (CV, Porady, Pomoc) */}
+          {footersection.map((section) => (
             <AccordionItem
-              key={section}
-              value={section}
+              key={section.title}
+              value={section.title}
               className="border-b-footer-copy"
             >
-              <AccordionTrigger className="text-footer-head text-xl font-bold hover:no-underline">
-                {section}
+              <AccordionTrigger className="text-footer-head text-xl hover:no-underline lg:font-bold">
+                {section.title}
               </AccordionTrigger>
               <AccordionContent className="flex flex-col gap-2">
-                {FOOTER_DATA[section]?.map((link) => (
+                {section.link.map((link) => (
                   <Button
                     key={link}
                     variant="link"
@@ -149,29 +137,38 @@ function Footer({ className, ...props }: FooterProps) {
               </AccordionContent>
             </AccordionItem>
           ))}
-        </Accordion>
 
-        <div className="flex w-full flex-col flex-wrap items-center justify-center gap-4 lg:flex-row lg:items-start lg:justify-between">
-          <div className="flex flex-col items-start justify-center gap-3">
-            <h1 className="text-footer-head w-full text-center text-xl font-bold">
+          <AccordionItem value="kontakt" className="border-b-footer-copy">
+            <AccordionTrigger className="text-footer-head text-xl hover:no-underline">
               Kontakt
-            </h1>
-            <a
-              href="#"
-              className="text-footer-link h-auto cursor-pointer px-0 text-lg hover:no-underline"
-            >
-              kontakt@cfuture.com
-            </a>
-            <div className="flex w-full flex-row items-center justify-center gap-1 lg:-ml-1.5">
-              <a href="#" className="text-footer-link cursor-pointer p-1.5">
-                <Linkedin className="size-8 lg:size-5" />
+            </AccordionTrigger>
+            <AccordionContent className="flex flex-col gap-5 pt-2 pb-4">
+              <a
+                href="mailto:kontakt@cfuture.com"
+                className="group flex items-center gap-3"
+              >
+                <Mail className="text-footer-link size-7 stroke-[1.5] opacity-70 transition-opacity group-hover:opacity-100" />
+                <span className="text-footer-link text-lg font-medium">
+                  kontakt@cfuture.com
+                </span>
               </a>
-              <a href="#" className="text-footer-link cursor-pointer p-1.5">
-                <Instagram className="size-8 lg:size-5" />
+
+              <a href="#" className="group flex items-center gap-3">
+                <Linkedin className="text-footer-link size-7 stroke-[1.5] opacity-70 transition-opacity group-hover:opacity-100" />
+                <span className="text-footer-link text-lg font-medium">
+                  LinkedIn
+                </span>
               </a>
-            </div>
-          </div>
-        </div>
+
+              <a href="#" className="group flex items-center gap-3">
+                <Instagram className="text-footer-link size-7 stroke-[1.5] opacity-70 transition-opacity group-hover:opacity-100" />
+                <span className="text-footer-link text-lg font-medium">
+                  Instagram
+                </span>
+              </a>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </div>
 
       <div>
