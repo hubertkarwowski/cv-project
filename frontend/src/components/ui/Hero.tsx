@@ -9,6 +9,27 @@ import { Button } from './button';
 type HeroProps = {
   className?: string;
 };
+
+const HeroImage = ({ className }: { className?: string }) => (
+  <div
+    className={cn(
+      'relative flex items-center justify-center lg:justify-end',
+      className
+    )}
+  >
+    <img
+      src={heroimagelg}
+      alt="cv image"
+      width={600}
+      height={450}
+      draggable="false"
+      className="w-full bg-no-repeat object-contain drop-shadow-2xl will-change-auto"
+      fetchPriority="high"
+      loading="eager"
+    />
+  </div>
+);
+
 function Hero({ className, ...props }: HeroProps) {
   return (
     <main
@@ -18,60 +39,45 @@ function Hero({ className, ...props }: HeroProps) {
         backgroundPosition: 'center',
       }}
       className={cn(
-        'flex flex-col items-center justify-center overflow-hidden',
+        'aspect-ratio flex flex-col items-center justify-center overflow-hidden',
         className
       )}
       {...props}
     >
-      <div className="mx-auto grid max-w-7xl grid-cols-1 px-6 lg:grid-cols-2 lg:px-12 lg:py-12">
-        <div className="flex flex-col justify-center gap-8 py-10 lg:py-0">
-          <div className="space-y-6">
-            <h1 className="text-center text-4xl font-extrabold tracking-tight text-slate-900 sm:text-5xl lg:text-left lg:text-6xl">
-              Tu zaczyna się
+      <div className="mx-auto grid max-w-7xl grid-cols-1 items-center px-6 py-6 lg:grid-cols-2 lg:px-12 lg:py-12">
+        <HeroImage className="order-1 lg:order-2 lg:py-0" />
+        <div className="order-2 flex flex-col justify-center gap-8 py-4 lg:order-1 lg:py-0 lg:py-10">
+          <div className="space-y-4">
+            <h1 className="text-center text-4xl font-extrabold tracking-tight text-balance sm:text-5xl lg:text-left lg:text-6xl">
+              This is where
               <br />
-              <span className="text-center lg:text-left">Twoja przyszłość</span>
+              <span className="block text-center lg:text-left">
+                Your future begins
+              </span>
             </h1>
 
-            <div className="lg:hidden">
-              <div className="relative flex items-center justify-center lg:justify-end">
-                <img
-                  src={heroimagelg}
-                  alt="Podgląd profesjonalnego szablonu CV"
-                  draggable="false"
-                  className="w-full max-w-[600px] object-contain drop-shadow-2xl"
-                />
-              </div>
-            </div>
-
-            <p className="max-w-lg text-center text-xl leading-relaxed text-slate-700 lg:text-left lg:text-lg">
-              CV to coś więcej niż dokument. To Twoja przepustka do lepszej
-              pracy, wyższych zarobków{' '}
-              <span className="font-bold text-slate-900">
-                i życia na Twoich zasadach
+            <p className="text-text-main max-w-lg text-center text-xl leading-relaxed font-medium text-pretty lg:text-left lg:text-lg">
+              A resume is more than just a document. It’s Your ticket to a
+              <span className="font-bold text-black">
+                {' '}
+                better job and higher pay{' '}
               </span>
-              . Stwórz profesjonalne CV w kilka minut.
+              and living life on your own terms. Create a professional resume in
+              just a few minutes.
             </p>
-          </div>
 
-          <div className="flex flex-col flex-wrap gap-4 sm:flex-row">
-            <Button className="text-text-main border-border hover:text-text-blue h-14 cursor-pointer rounded-full bg-white px-8 text-lg font-semibold transition-all transition-colors duration-500 hover:border-blue-500">
-              <Wand2 className="mr-2 size-5" />
-              Ulepsz swoje CV
-            </Button>
-            <Button className="bg-text-blue h-14 cursor-pointer rounded-full px-8 text-lg text-white shadow-lg shadow-blue-200">
-              <Plus className="mr-2 size-5" />
-              Stwórz CV online
-            </Button>
-          </div>
-        </div>
+            <div className="flex flex-col flex-wrap gap-4 sm:flex-row">
+              <Button className="bg-text-blue focus-visible:ring-text-blue h-14 cursor-pointer rounded-full px-8 text-lg font-bold text-white shadow-lg transition duration-300 will-change-transform outline-none hover:brightness-110 focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-95">
+                <Plus className="mr-2 size-5" />
+                Create Resume
+              </Button>
 
-        <div className="relative flex hidden items-center justify-center lg:block lg:justify-end">
-          <img
-            src={heroimagelg}
-            alt="Podgląd profesjonalnego szablonu CV"
-            draggable="false"
-            className="w-full max-w-[600px] object-contain drop-shadow-2xl"
-          />
+              <Button className="text-text-main border-border hover:text-text-blue hover:border-text-blue focus-visible:ring-text-blue h-14 cursor-pointer rounded-full border bg-white px-8 text-lg font-semibold transition duration-300 will-change-transform outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-95">
+                <Wand2 className="mr-2 size-5" />
+                Enhance Resume
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </main>

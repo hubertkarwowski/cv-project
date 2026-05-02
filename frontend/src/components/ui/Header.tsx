@@ -79,7 +79,7 @@ export function Header() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
-    <header className="sticky top-0 left-0 z-50 flex h-20 w-full items-center justify-between border-b bg-white/80 px-10 backdrop-blur-md">
+    <header className="sticky top-0 left-0 z-50 flex h-20 w-full items-center justify-between border-b bg-white/80 px-16 backdrop-blur-md">
       {' '}
       <div className="flex items-center">
         <CFuturelogo />

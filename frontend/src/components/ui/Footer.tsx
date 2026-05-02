@@ -19,13 +19,33 @@ type FooterSection = {
   link: string[];
 };
 
-const footersection: FooterSection[] = [
-  { title: 'CV', link: ['Kreator', 'Szablon', 'Wzory', 'Jak napisac'] },
+const footerSection: FooterSection[] = [
   {
-    title: 'Porady',
-    link: ['CV po angielsku', 'Szablon', 'Wzory', 'Jak napisac'],
+    title: 'Product',
+    link: [
+      'Resume Builder',
+      'Resume Templates',
+      'Cover Letter Builder',
+      'Pricing',
+    ],
   },
-  { title: 'Pomoc', link: ['O nas', 'Kontakt'] },
+  {
+    title: 'Resources',
+    link: [
+      'Resume Examples',
+      'How to Write a Resume',
+      'Career Blog',
+      'Resume Guide',
+    ],
+  },
+  {
+    title: 'Support',
+    link: ['FAQ', 'Contact Us', 'About Us'],
+  },
+  {
+    title: 'Legal',
+    link: ['Privacy Policy', 'Terms of Service', 'Cookie Policy'],
+  },
 ];
 
 function Footer({ className, ...props }: FooterProps) {
@@ -33,21 +53,12 @@ function Footer({ className, ...props }: FooterProps) {
     <footer
       {...props}
       className={cn(
-        'bg-footer flex max-w-screen flex-col gap-6 px-16 pb-10 font-sans text-xl hover:no-underline',
+        'bg-footer flex max-w-screen flex-col gap-6 px-6 py-16 font-sans text-xl hover:no-underline lg:px-16 lg:py-16',
         className
       )}
     >
-      <div className="bg-footer flex w-full flex-row justify-center py-6 lg:items-start lg:justify-start">
-        {' '}
-        <div className="flex flex-col items-center justify-center gap-2 lg:items-start lg:justify-start">
-          <h2 className="text-footer-head text-center text-3xl lg:text-left lg:text-2xl">
-            Stworzone przez profesjonalistów dla profesjonalistów
-          </h2>
-        </div>
-      </div>
-
       <div className="hidden flex-row flex-wrap items-start justify-between gap-12 lg:flex">
-        {footersection.map((section) => (
+        {footerSection.map((section) => (
           <div
             key={section.title}
             className="flex flex-col items-start gap-3 font-medium"
@@ -114,8 +125,7 @@ function Footer({ className, ...props }: FooterProps) {
 
       <div className="w-full lg:hidden">
         <Accordion type="single" collapsible className="w-full">
-          {/* Mapowanie istniejących sekcji (CV, Porady, Pomoc) */}
-          {footersection.map((section) => (
+          {footerSection.map((section) => (
             <AccordionItem
               key={section.title}
               value={section.title}
@@ -142,7 +152,7 @@ function Footer({ className, ...props }: FooterProps) {
             <AccordionTrigger className="text-footer-head text-xl hover:no-underline">
               Kontakt
             </AccordionTrigger>
-            <AccordionContent className="flex flex-col gap-5 pt-2 pb-4">
+            <AccordionContent className="flex flex-col gap-5 py-4">
               <a
                 href="mailto:kontakt@cfuture.com"
                 className="group flex items-center gap-3"
@@ -175,16 +185,17 @@ function Footer({ className, ...props }: FooterProps) {
         <div className="flex flex-col gap-2">
           <div className="bg-footer flex w-full items-center justify-center text-xs lg:items-start lg:justify-start">
             <p className="text-footer-copy text-center font-semibold text-pretty lg:text-left">
-              &copy; Works Limited, wszystkie prawa zastrzezone
+              &copy; {new Date().getFullYear()} Works Limited. All rights
+              reserved.
             </p>
           </div>
 
           <div className="bg-footer flex w-full items-center justify-center text-xs lg:items-start lg:justify-start">
-            <p className="text-footer-copy w-full max-w-3xl text-center text-pretty lg:max-w-full lg:text-left">
-              Wszystkie nazwy i logo firm wskazane powyżej są znakami towarowymi
-              odpowiednich właścicieli. O ile wyraźnie nie zaznaczono inaczej,
-              takie odniesienia nie mają na celu sugerowania powiązania lub
-              stowarzyszenia z CFuture
+            <p className="text-footer-copy w-full max-w-3xl text-center leading-relaxed text-pretty opacity-70 lg:max-w-full lg:text-left">
+              All company names and logos mentioned above are trademarks of
+              their respective owners. Unless otherwise stated, such references
+              are not intended to imply any affiliation or association with
+              CFuture.
             </p>
           </div>
         </div>

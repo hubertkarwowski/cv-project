@@ -10,7 +10,6 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <div className="flex min-h-screen flex-col">
-        {' '}
         <Header />
         <Hero />
         <Footer />
