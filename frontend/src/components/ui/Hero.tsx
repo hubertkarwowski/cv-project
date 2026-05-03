@@ -67,7 +67,7 @@ function Hero({ className, ...props }: HeroProps) {
             </p>
 
             <div className="flex flex-col flex-wrap gap-4 sm:flex-row">
-              <Button className="bg-text-blue focus-visible:ring-text-blue h-14 cursor-pointer rounded-full px-8 text-lg font-bold text-white shadow-lg transition duration-300 will-change-transform outline-none hover:brightness-110 focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-95">
+              <Button className="bg-text-blue h-14 cursor-pointer rounded-full px-8 text-lg font-bold text-white shadow-lg transition duration-300 will-change-transform outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-95">
                 <Plus className="mr-2 size-5" />
                 Create Resume
               </Button>
