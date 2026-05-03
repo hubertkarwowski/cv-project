@@ -12,7 +12,8 @@
     "preview": "vite preview",
     "test": "vitest",
     "prepare": "cd .. && husky frontend/.husky",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "docker:dev": "vite --host"
   },
   "dependencies": {
     "@fontsource-variable/geist": "5.2.8",

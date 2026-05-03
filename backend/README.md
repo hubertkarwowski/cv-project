@@ -22,10 +22,8 @@ A modular structure has been implemented within the `app/` directory:
 ## Instruction Setup
 
 1. Go to the backend folder: `cd backend`.
-2. Create and activate the venv: `python -m venv venv` and `source venv/Scripts/activate`.
-3. Install the lib: `pip install -r requirements.txt`.
-4. Install the development tools: `pip install -r requirements-dev.txt`.
-5. Install automatic hooks: `pre-commit install`.
+2. Run `uv sync`
+3. Run `uv run fastapi dev`
 
 ## Checklist
 
@@ -33,16 +31,3 @@ A modular structure has been implemented within the `app/` directory:
 - [x] The Black, Ruff, and Mypy configurations have been added to `pyproject.toml`.
 - [x] The `.gitignore` file correctly excludes the linter cache and the `venv` folder.
 - [x] Pre-commit hooks tested locally.
-
-<!-- This is an auto-generated comment: release notes by coderabbit.ai -->
-
-## Summary by CodeRabbit
-
-- **New Features**
-  - Added a FastAPI backend with a basic "Hello World" API endpoint.
-
-- **Chores**
-  - Initialized backend project with development tooling, linters and pre-commit hooks.
-  - Added backend developer docs and dev dependency list.
-  - Normalized frontend configuration and hook files line endings for consistency.
-  <!-- end of auto-generated comment: release notes by coderabbit.ai -->

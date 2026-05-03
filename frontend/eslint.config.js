@@ -62,6 +62,12 @@ export default defineConfig([
        * Architecture
        */
       'no-restricted-imports': ['error', { patterns: ['../*', '../**'] }],
+      'no-duplicate-imports': 'error',
+      'no-inner-declarations': 'error',
+      'no-self-compare': 'error',
+      eqeqeq: ['error', 'smart'],
+      'no-inline-comments': 'error',
+      'no-var': 'error',
 
       'import/no-restricted-paths': [
         'error',
@@ -130,6 +136,7 @@ export default defineConfig([
           ignore: ['^[A-Z][a-zA-Z0-9]*\\.tsx$', '^use[A-Z][a-zA-Z0-9]*\\.ts'],
         },
       ],
+      'no-console': ['error', { allow: ['warn', 'error'] }],
     },
   },
 ]);
