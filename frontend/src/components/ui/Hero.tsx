@@ -1,7 +1,7 @@
 import { Plus, Wand2 } from 'lucide-react';
 
 import background from '@/assets/background.png';
-import heroimagelg from '@/assets/heroimg.png';
+import heroimg from '@/assets/heroimg_l.png';
 import { cn } from '@/lib/utils';
 
 import { Button } from './button';
@@ -18,7 +18,7 @@ const HeroImage = ({ className }: { className?: string }) => (
     )}
   >
     <img
-      src={heroimagelg}
+      src={heroimg}
       alt="cv image"
       width={600}
       height={450}
