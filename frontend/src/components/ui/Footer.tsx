@@ -53,7 +53,7 @@ function Footer({ className, ...props }: FooterProps) {
     <footer
       {...props}
       className={cn(
-        'bg-footer flex max-w-screen flex-col gap-6 px-6 py-16 font-sans text-xl hover:no-underline lg:px-16 lg:py-16',
+        'bg-footer flex max-w-screen flex-col gap-6 px-10 py-16 font-sans text-xl hover:no-underline lg:px-10 lg:py-16 2xl:px-20',
         className
       )}
     >
@@ -63,14 +63,14 @@ function Footer({ className, ...props }: FooterProps) {
             key={section.title}
             className="flex flex-col items-start gap-3 font-medium"
           >
-            <h2 className="text-footer-head pt-2 text-left text-lg font-bold tracking-tight text-pretty">
+            <h2 className="text-footer-head pt-2 text-left text-lg font-bold tracking-tight text-pretty 2xl:text-2xl">
               {section.title}
             </h2>
             {section.link.map((link) => (
               <Button
                 key={link}
                 variant="link"
-                className="text-footer-link h-auto w-full cursor-pointer justify-start px-0 text-left text-base font-medium text-pretty transition-colors duration-300 hover:text-white hover:no-underline"
+                className="text-footer-link h-auto w-full cursor-pointer justify-start px-0 text-left text-base font-medium text-pretty transition-colors duration-300 hover:text-white hover:no-underline 2xl:text-lg"
               >
                 {link}
               </Button>
@@ -80,7 +80,7 @@ function Footer({ className, ...props }: FooterProps) {
 
         <div className="flex flex-col items-start gap-6 font-medium">
           <div className="flex flex-col items-center gap-3 text-center lg:items-start">
-            <h2 className="text-footer-head pt-2 text-left text-lg font-bold tracking-tight text-pretty">
+            <h2 className="text-footer-head pt-2 text-left text-lg font-bold tracking-tight text-pretty 2xl:text-2xl">
               Kontakt
             </h2>
 
@@ -90,7 +90,7 @@ function Footer({ className, ...props }: FooterProps) {
                 className="group text-footer-link hover:text-chart-5 flex items-center gap-2 duration-300"
               >
                 <Mail className="size-6 stroke-[1.5] opacity-70 group-hover:opacity-100"></Mail>
-                <span className="text-footer-link hover:text-chart-5 text-base duration-300">
+                <span className="text-footer-link hover:text-chart-5 text-base duration-300 2xl:text-lg">
                   kontakt@cfuture.com
                 </span>
               </a>
@@ -102,7 +102,7 @@ function Footer({ className, ...props }: FooterProps) {
                 <div className="flex w-5 justify-center">
                   <Linkedin className="size-6 stroke-[1.5] opacity-70 group-hover:opacity-100" />
                 </div>
-                <span className="text-footer-link hover:text-chart-5 text-base duration-300">
+                <span className="text-footer-link hover:text-chart-5 text-base duration-300 2xl:text-lg">
                   LinkedIn
                 </span>
               </a>
@@ -114,7 +114,7 @@ function Footer({ className, ...props }: FooterProps) {
                 <div className="flex w-5 justify-center">
                   <Instagram className="size-6 stroke-[1.5] opacity-70 group-hover:opacity-100" />
                 </div>
-                <span className="text-footer-link hover:text-destructive text-base duration-300">
+                <span className="text-footer-link hover:text-destructive text-base duration-300 2xl:text-lg">
                   Instagram
                 </span>
               </a>
@@ -183,14 +183,14 @@ function Footer({ className, ...props }: FooterProps) {
 
       <div>
         <div className="flex flex-col gap-2">
-          <div className="bg-footer flex w-full items-center justify-center text-xs lg:items-start lg:justify-start">
+          <div className="bg-footer flex w-full items-center justify-center text-xs lg:items-start lg:justify-start 2xl:text-sm">
             <p className="text-footer-copy text-center font-semibold text-pretty lg:text-left">
               &copy; {new Date().getFullYear()} Works Limited. All rights
               reserved.
             </p>
           </div>
 
-          <div className="bg-footer flex w-full items-center justify-center text-xs lg:items-start lg:justify-start">
+          <div className="bg-footer flex w-full items-center justify-center text-xs lg:items-start lg:justify-start 2xl:text-sm">
             <p className="text-footer-copy w-full max-w-3xl text-center leading-relaxed text-pretty opacity-70 lg:max-w-full lg:text-left">
               All company names and logos mentioned above are trademarks of
               their respective owners. Unless otherwise stated, such references
