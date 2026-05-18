@@ -2,16 +2,11 @@ import * as React from 'react';
 import { Menu } from 'lucide-react';
 
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { NAV_LINKS } from '@/lib/navigation';
 import { cn } from '@/lib/utils';
 
 import { Button } from './button';
 import { CFuturelogo } from './CFuturelogo';
-
-const navLinks = [
-  { label: 'Template', href: '#' },
-  { label: 'Guide', href: '#' },
-  { label: 'FAQ', href: '#' },
-];
 
 const NavItems = ({
   isMobile,
@@ -28,7 +23,7 @@ const NavItems = ({
         : 'mr-8 ml-auto hidden items-center lg:flex'
     )}
   >
-    {navLinks.map((link) => (
+    {NAV_LINKS.map((link) => (
       <a
         key={link.label}
         href={link.href}
@@ -59,18 +54,18 @@ const AuthButtons = ({ isMobile }: { isMobile?: boolean }) => (
       )}
       asChild
     >
-      <a href="#">Log In</a>
+      <a href="#">Zaloguj się</a>
     </Button>
 
     <Button
       className={cn(
         isMobile
           ? 'bg-btn-blue h-10 rounded-full px-8 py-6 text-2xl font-medium text-white duration-500'
-          : 'bg-text-blue hover:bg-text-blue! h-10 rounded-full px-8 text-xl font-medium text-white duration-500 hover:text-white! 2xl:h-12 2xl:px-10 2xl:text-2xl'
+          : 'bg-btn-blue hover:bg-btn-blue! h-10 rounded-full px-8 text-xl font-medium text-white duration-500 hover:text-white! 2xl:h-12 2xl:px-10 2xl:text-2xl'
       )}
       asChild
     >
-      <a href="#">Join Now</a>
+      <a href="#">Dołącz</a>
     </Button>
   </div>
 );
