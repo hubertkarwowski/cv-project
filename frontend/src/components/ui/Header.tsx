@@ -49,7 +49,7 @@ const AuthButtons = ({ isMobile }: { isMobile?: boolean }) => (
     <Button
       className={cn(
         isMobile
-          ? 'border-footer-text text-bold text-text-main w-full rounded-full bg-white py-6 text-2xl'
+          ? 'border-text-main text-bold text-text-main w-full rounded-full bg-white py-6 text-2xl'
           : 'border-footer-text hover:border-btn-blue text-text-main hover:text-btn-blue h-10 rounded-full bg-transparent px-8 text-xl font-medium duration-500 hover:bg-white! 2xl:h-12 2xl:px-10 2xl:text-2xl'
       )}
       asChild
