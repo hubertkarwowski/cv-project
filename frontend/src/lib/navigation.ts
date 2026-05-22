@@ -1,9 +1,9 @@
-export type NavLink = {
+type NavLink = {
   label: string;
   href: string;
 };
 
-export type FooterSection = {
+type FooterSection = {
   title: string;
   links: NavLink[];
 };
@@ -12,10 +12,9 @@ const LINK_SZABLONY: NavLink = { label: 'Szablony', href: '#' };
 const LINK_PORADNIK: NavLink = { label: 'Poradnik', href: '#' };
 const LINK_FAQ: NavLink = { label: 'FAQ', href: '#' };
 
-export const NAV_LINKS: NavLink[] = [LINK_SZABLONY, LINK_PORADNIK, LINK_FAQ];
+const NAV_LINKS: NavLink[] = [LINK_SZABLONY, LINK_PORADNIK, LINK_FAQ];
 
-// 3. Stopka współdzieli te same referencje!
-export const FOOTER_SECTIONS: FooterSection[] = [
+const FOOTER_SECTIONS: FooterSection[] = [
   {
     title: 'Produkt',
     links: [
@@ -52,8 +51,12 @@ export const FOOTER_SECTIONS: FooterSection[] = [
   },
 ];
 
-export const CONTACT_INFO = {
+const CONTACT_INFO = {
   email: 'kontakt@cfuture.com',
   linkedin: '#',
   instagram: '#',
 };
+
+// Jeden czysty i czytelny eksport na dole pliku
+export { CONTACT_INFO, FOOTER_SECTIONS, NAV_LINKS };
+export type { FooterSection, NavLink };

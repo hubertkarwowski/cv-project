@@ -6,7 +6,7 @@ import { NAV_LINKS } from '@/lib/navigation';
 import { cn } from '@/lib/utils';
 
 import { Button } from './button';
-import { CFuturelogo } from './CFuturelogo';
+import { CFutureLogo } from './CFutureLogo';
 
 const NavItems = ({
   isMobile,
@@ -70,14 +70,13 @@ const AuthButtons = ({ isMobile }: { isMobile?: boolean }) => (
   </div>
 );
 
-export function Header() {
+function Header() {
   const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <header className="sticky top-0 left-0 z-50 flex h-20 w-full items-center justify-between border-b bg-white/80 px-10 backdrop-blur-md 2xl:h-22 2xl:px-20">
-      {' '}
       <div className="flex items-center">
-        <CFuturelogo />
+        <CFutureLogo />
       </div>
       <NavItems />
       <div className="hidden lg:flex">
@@ -102,3 +101,5 @@ export function Header() {
     </header>
   );
 }
+
+export { Header };

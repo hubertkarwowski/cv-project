@@ -1,14 +1,16 @@
+import * as React from 'react';
+
 import { cn } from '@/lib/utils';
 
-type CFuturelogoProps = React.ComponentProps<'div'> & {
+type CFutureLogoProps = React.ComponentProps<'div'> & {
   isFooter?: boolean;
 };
 
-function CFuturelogo({
+function CFutureLogo({
   className,
   isFooter = false,
   ...props
-}: CFuturelogoProps) {
+}: CFutureLogoProps) {
   return (
     <div
       {...props}
@@ -34,4 +36,4 @@ function CFuturelogo({
   );
 }
 
-export { CFuturelogo };
+export { CFutureLogo };

@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { Instagram, Linkedin, Mail } from 'lucide-react';
 
 import {
@@ -10,9 +11,9 @@ import { CONTACT_INFO, FOOTER_SECTIONS } from '@/lib/navigation';
 import { cn } from '@/lib/utils';
 
 import { Button } from './button';
-import { CFuturelogo } from './CFuturelogo';
+import { CFutureLogo } from './CFutureLogo';
 
-type FooterProps = {
+type FooterProps = React.ComponentProps<'footer'> & {
   className?: string;
 };
 
@@ -21,46 +22,46 @@ function Footer({ className, ...props }: FooterProps) {
     <footer
       {...props}
       className={cn(
-        'border-text-main text-text-main flex max-w-screen flex-col gap-6 px-10 py-16 text-xl hover:no-underline lg:px-10 lg:py-16 2xl:px-20',
+        'border-text-main text-text-main flex flex-col gap-6 px-10 py-16 text-xl hover:no-underline lg:px-10 lg:py-16 2xl:px-20',
         className
       )}
     >
       <div className="border-text-main hidden flex-row flex-wrap items-start justify-between gap-12 border-b pb-16 lg:flex">
         <div className="flex flex-col items-start gap-6 font-medium">
           <div className="flex flex-col items-center gap-3 text-center lg:items-start">
-            <CFuturelogo className="pb-4" />
+            <CFutureLogo className="pb-4" />
 
             <div className="flex flex-row gap-4 lg:flex-col lg:gap-4">
               <a
                 href={`mailto:${CONTACT_INFO.email}`}
-                className="group flex items-center gap-2 duration-300"
+                className="group flex items-center gap-2 transition-colors duration-300"
               >
-                <Mail className="size-6 stroke-[1.5] opacity-70 group-hover:opacity-100"></Mail>
-                <span className="text-text-main hover:text-chart-5 text-base duration-300 2xl:text-lg">
+                <Mail className="group-hover:text-btn-blue size-6 stroke-[1.5] opacity-70 transition-colors duration-300 group-hover:opacity-100" />
+                <span className="text-text-main group-hover:text-btn-blue text-base transition-colors duration-300 2xl:text-lg">
                   {CONTACT_INFO.email}
                 </span>
               </a>
 
               <a
                 href={CONTACT_INFO.linkedin}
-                className="group flex items-center gap-2 duration-300"
+                className="group flex items-center gap-2 transition-colors duration-300"
               >
                 <div className="flex w-5 justify-center">
-                  <Linkedin className="size-6 stroke-[1.5] opacity-70 group-hover:opacity-100" />
+                  <Linkedin className="group-hover:text-chart-4 size-6 stroke-[1.5] opacity-70 transition-colors duration-300 group-hover:opacity-100" />
                 </div>
-                <span className="text-text-main hover:text-chart-5 text-base duration-300 2xl:text-lg">
+                <span className="text-text-main group-hover:text-chart-4 text-base transition-colors duration-300 2xl:text-lg">
                   LinkedIn
                 </span>
               </a>
 
               <a
                 href={CONTACT_INFO.instagram}
-                className="group flex items-center gap-2 duration-300"
+                className="group flex items-center gap-2 transition-colors duration-300"
               >
                 <div className="flex w-5 justify-center">
-                  <Instagram className="size-6 stroke-[1.5] opacity-70 group-hover:opacity-100" />
+                  <Instagram className="group-hover:text-destructive size-6 stroke-[1.5] opacity-70 transition-colors duration-300 group-hover:opacity-100" />
                 </div>
-                <span className="text-text-main hover:text-destructive text-base duration-300 2xl:text-lg">
+                <span className="text-text-main group-hover:text-destructive text-base transition-colors duration-300 2xl:text-lg">
                   Instagram
                 </span>
               </a>
@@ -80,7 +81,7 @@ function Footer({ className, ...props }: FooterProps) {
               <Button
                 key={link.label}
                 variant="link"
-                className="text-text-main h-auto w-full cursor-pointer justify-start px-0 text-left text-base font-medium text-pretty transition-colors duration-300 hover:text-white hover:no-underline 2xl:text-lg"
+                className="text-text-main hover:text-btn-blue h-auto w-full cursor-pointer justify-start px-0 text-left text-base font-medium text-pretty transition-colors duration-300 hover:no-underline 2xl:text-lg"
                 asChild
               >
                 <a href={link.href}>{link.label}</a>
@@ -123,30 +124,30 @@ function Footer({ className, ...props }: FooterProps) {
             <AccordionContent className="flex flex-col gap-5 py-4">
               <a
                 href={`mailto:${CONTACT_INFO.email}`}
-                className="group flex items-center gap-3"
+                className="group flex items-center gap-3 transition-colors duration-300"
               >
-                <Mail className="text-text-main size-7 stroke-[1.5] opacity-70 transition-opacity" />
-                <span className="text-text-main text-lg font-medium">
+                <Mail className="text-text-main group-hover:text-btn-blue size-7 stroke-[1.5] opacity-70 transition-all duration-300 group-hover:opacity-100" />
+                <span className="text-text-main group-hover:text-btn-blue text-lg font-medium transition-colors duration-300">
                   {CONTACT_INFO.email}
                 </span>
               </a>
 
               <a
                 href={CONTACT_INFO.linkedin}
-                className="group flex items-center gap-3"
+                className="group flex items-center gap-3 transition-colors duration-300"
               >
-                <Linkedin className="text-text-main size-7 stroke-[1.5] opacity-70 transition-opacity group-hover:opacity-100" />
-                <span className="text-text-main text-lg font-medium">
+                <Linkedin className="text-text-main group-hover:text-chart-4 size-7 stroke-[1.5] opacity-70 transition-all duration-300 group-hover:opacity-100" />
+                <span className="text-text-main group-hover:text-chart-4 text-lg font-medium transition-colors duration-300">
                   LinkedIn
                 </span>
               </a>
 
               <a
                 href={CONTACT_INFO.instagram}
-                className="group flex items-center gap-3"
+                className="group flex items-center gap-3 transition-colors duration-300"
               >
-                <Instagram className="text-text-main size-7 stroke-[1.5] opacity-70 transition-opacity group-hover:opacity-100" />
-                <span className="text-text-main text-lg font-medium">
+                <Instagram className="text-text-main group-hover:text-destructive size-7 stroke-[1.5] opacity-70 transition-all duration-300 group-hover:opacity-100" />
+                <span className="text-text-main group-hover:text-destructive text-lg font-medium transition-colors duration-300">
                   Instagram
                 </span>
               </a>
