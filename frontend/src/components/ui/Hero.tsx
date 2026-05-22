@@ -58,7 +58,7 @@ function Hero({ className, style, ...props }: HeroProps) {
       )}
       {...props}
     >
-      <div className="grid w-full grid-cols-1 items-center gap-12 px-10 py-12 lg:grid-cols-2 lg:py-24 2xl:px-0 2xl:py-30">
+      <div className="grid w-full grid-cols-1 items-center gap-12 px-10 py-12 lg:grid-cols-2 lg:py-10 2xl:px-0 2xl:py-30">
         <div className="order-2 flex flex-col justify-center lg:order-1">
           <div className="space-y-6">
             <h1 className="text-center text-4xl font-black tracking-tight sm:text-5xl md:text-5xl lg:text-left lg:text-5xl 2xl:text-6xl">
