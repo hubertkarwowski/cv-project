@@ -29,7 +29,7 @@ const NavItems = ({
         href={link.href}
         onClick={onLinkClick}
         className={cn(
-          'text-text-main hover:text-btn-blue font-medium transition-colors duration-500',
+          'text-sidebar-ring hover:text-chart-3 font-medium transition-colors duration-500',
           isMobile ? 'text-3xl' : 'text-xl 2xl:text-2xl'
         )}
       >
@@ -49,8 +49,8 @@ const AuthButtons = ({ isMobile }: { isMobile?: boolean }) => (
     <Button
       className={cn(
         isMobile
-          ? 'border-text-main text-bold text-text-main w-full rounded-full bg-white py-6 text-2xl'
-          : 'border-footer-text hover:border-btn-blue text-text-main hover:text-btn-blue h-10 rounded-full bg-transparent px-8 text-xl font-medium duration-500 hover:bg-white! 2xl:h-12 2xl:px-10 2xl:text-2xl'
+          ? 'border-sidebar-ring text-bold text-sidebar-ring w-full rounded-full bg-white py-6 text-2xl'
+          : 'border-sidebar-ring hover:border-chart-3 text-sidebar-ring hover:text-chart-3 h-10 rounded-full bg-transparent px-8 text-xl font-medium duration-500 hover:bg-white! 2xl:h-12 2xl:px-10 2xl:text-2xl'
       )}
       asChild
     >
@@ -60,8 +60,8 @@ const AuthButtons = ({ isMobile }: { isMobile?: boolean }) => (
     <Button
       className={cn(
         isMobile
-          ? 'bg-btn-blue h-10 rounded-full px-8 py-6 text-2xl font-medium text-white duration-500'
-          : 'bg-btn-blue hover:bg-btn-blue! h-10 rounded-full px-8 text-xl font-medium text-white duration-500 hover:text-white! 2xl:h-12 2xl:px-10 2xl:text-2xl'
+          ? 'bg-chart-3 h-10 rounded-full px-8 py-6 text-2xl font-medium text-white duration-500'
+          : 'bg-chart-3 hover:bg-chart-3! h-10 rounded-full px-8 text-xl font-medium text-white duration-500 hover:text-white! 2xl:h-12 2xl:px-10 2xl:text-2xl'
       )}
       asChild
     >

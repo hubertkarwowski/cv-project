@@ -18,7 +18,7 @@ function CFutureLogo({
     >
       <div
         className={cn(
-          'text-primary-foreground bg-btn-blue flex size-8 items-center justify-center rounded-lg text-xl font-bold md:size-8',
+          'text-primary-foreground bg-chart-3 flex size-8 items-center justify-center rounded-lg text-xl font-bold md:size-8',
           isFooter && 'bg-white text-black'
         )}
       >

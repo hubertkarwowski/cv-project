@@ -67,7 +67,7 @@ function Hero({ className, style, ...props }: HeroProps) {
               <span className="block">TWOJA PRZYSZŁOŚĆ</span>
             </h1>
 
-            <p className="text-text-main mx-auto max-w-md text-center text-base leading-relaxed font-medium sm:text-lg lg:mx-0 lg:max-w-lg lg:text-left">
+            <p className="text-sidebar-ring mx-auto max-w-md text-center text-base leading-relaxed font-medium sm:text-lg lg:mx-0 lg:max-w-lg lg:text-left">
               CV to coś więcej niż tylko dokument. To Twoja przepustka do{' '}
               <span className="text-foreground font-bold">
                 lepszej pracy i wyższych zarobków
@@ -77,12 +77,12 @@ function Hero({ className, style, ...props }: HeroProps) {
             </p>
 
             <div className="flex flex-row items-center justify-center gap-4 lg:justify-start">
-              <Button className="border-footer-text text-text-main hover:text-text-blue hover:border-text-blue flex h-14 min-w-35 cursor-pointer items-center justify-center gap-2 rounded-full border bg-white px-6 text-lg font-bold transition hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-95 sm:min-w-40 2xl:h-16 2xl:min-w-50 2xl:px-8 2xl:text-xl">
+              <Button className="text-sidebar-ring border-sidebar-ring hover:text-chart-3 hover:border-chart-3 flex h-14 min-w-35 cursor-pointer items-center justify-center gap-2 rounded-full border bg-white px-6 text-lg font-bold transition hover:bg-gray-50 focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-95 sm:min-w-40 2xl:h-16 2xl:min-w-50 2xl:px-8 2xl:text-xl">
                 <Wand2 className="size-5 transition-transform group-hover:scale-110 2xl:size-6" />
                 <span>Ulepsz</span>
               </Button>
 
-              <Button className="bg-text-blue text-background flex h-14 min-w-35 cursor-pointer items-center justify-center gap-2 rounded-full px-6 text-lg font-bold shadow-lg transition hover:opacity-90 focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-95 sm:min-w-40 2xl:h-16 2xl:min-w-50 2xl:px-8 2xl:text-xl">
+              <Button className="bg-chart-3 text-background flex h-14 min-w-35 cursor-pointer items-center justify-center gap-2 rounded-full px-6 text-lg font-bold shadow-lg transition hover:opacity-90 focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-95 sm:min-w-40 2xl:h-16 2xl:min-w-50 2xl:px-8 2xl:text-xl">
                 <Plus className="size-5 transition-transform group-hover:scale-110 2xl:size-6" />
                 <span>Stwórz</span>
               </Button>
