@@ -1,8 +1,7 @@
 from fastapi import FastAPI
 
-app = FastAPI()
+from app.api.main import router as api_router
+from app.core.config import settings
 
-
-@app.get("/")
-def read_root() -> dict[str, str]:
-    return {"message": "Hello World"}
+app = FastAPI(title=settings.PROJECT_NAME)
+app.include_router(api_router, prefix=settings.API_V1_STR)
