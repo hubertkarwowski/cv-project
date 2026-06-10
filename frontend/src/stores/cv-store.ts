@@ -28,10 +28,10 @@ export interface Experience {
   company: string;
   position: string;
   city: string;
-  startMonth: number | '';
-  startYear: number | '';
-  endMonth: number | '';
-  endYear: number | '';
+  startMonth: number | null;
+  startYear: number | null;
+  endMonth: number | null;
+  endYear: number | null;
   description: string;
 }
 
@@ -41,10 +41,10 @@ export interface Education {
   fieldOfStudy: string;
   institution: string;
   isCurrent: boolean;
-  startMonth: number | '';
-  startYear: number | '';
-  endMonth: number | '';
-  endYear: number | '';
+  startMonth: number | null;
+  startYear: number | null;
+  endMonth: number | null;
+  endYear: number | null;
   description: string;
 }
 
