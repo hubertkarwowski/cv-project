@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid';
 import { create } from 'zustand';
 export interface CvItem {
   id: string;
@@ -125,7 +124,7 @@ function removeItem<T extends { id: string }>(arr: T[], id: string): T[] {
 }
 
 function addItem(arr: CvItem[], name: string): CvItem[] {
-  return [...arr, { id: globalThis.crypto?.randomUUID?.() ?? uuidv4(), name }];
+  return [...arr, { id: String(Date.now()), name }];
 }
 
 export const useCvStore = create<CvStore>((set) => ({
