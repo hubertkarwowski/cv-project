@@ -134,7 +134,13 @@ export const useCvStore = create<CvStore>((set) => ({
     setExperience: (experience) => set({ experience }),
     addExperience: (exp) =>
       set((state) => ({
-        experience: [...state.experience, { ...exp, id: crypto.randomUUID() }],
+        experience: [
+          ...state.experience,
+          {
+            ...exp,
+            id: `${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+          },
+        ],
       })),
     removeExperience: (id) =>
       set((state) => ({ experience: removeItem(state.experience, id) })),
@@ -142,7 +148,13 @@ export const useCvStore = create<CvStore>((set) => ({
     setEducation: (education) => set({ education }),
     addEducation: (edu) =>
       set((state) => ({
-        education: [...state.education, { ...edu, id: crypto.randomUUID() }],
+        education: [
+          ...state.education,
+          {
+            ...edu,
+            id: `${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+          },
+        ],
       })),
     removeEducation: (id) =>
       set((state) => ({ education: removeItem(state.education, id) })),
@@ -168,7 +180,11 @@ export const useCvStore = create<CvStore>((set) => ({
       set((state) => ({
         languages: [
           ...state.languages,
-          { id: crypto.randomUUID(), name, level },
+          {
+            id: `${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
+            name,
+            level,
+          },
         ],
       })),
     removeLanguage: (id) =>
