@@ -1,11 +1,9 @@
 import { create } from 'zustand';
 export interface CvItem {
-  id: string;
   name: string;
 }
 
 export interface LanguageItem {
-  id: string;
   name: string;
   level: string;
 }
@@ -23,7 +21,6 @@ export interface PersonalInfo {
 }
 
 export interface Experience {
-  id: string;
   company: string;
   position: string;
   city: string;
@@ -35,7 +32,6 @@ export interface Experience {
 }
 
 export interface Education {
-  id: string;
   degree: string;
   fieldOfStudy: string;
   institution: string;
@@ -64,26 +60,26 @@ export interface CvState {
 
 export interface CvActions {
   setExperience: (experience: Experience[]) => void;
-  addExperience: (exp: Omit<Experience, 'id'>) => void;
-  removeExperience: (id: string) => void;
+  addExperience: (exp: Experience) => void;
+  removeExperience: (index: number) => void;
 
   setEducation: (education: Education[]) => void;
-  addEducation: (edu: Omit<Education, 'id'>) => void;
-  removeEducation: (id: string) => void;
+  addEducation: (edu: Education) => void;
+  removeEducation: (index: number) => void;
 
   setPersonalInfo: (personalInfo: PersonalInfo) => void;
 
   addSkill: (name: string) => void;
-  removeSkill: (id: string) => void;
+  removeSkill: (index: number) => void;
 
   addLanguage: (name: string, level: string) => void;
-  removeLanguage: (id: string) => void;
+  removeLanguage: (index: number) => void;
 
   addCertificate: (name: string) => void;
-  removeCertificate: (id: string) => void;
+  removeCertificate: (index: number) => void;
 
   addCourse: (name: string) => void;
-  removeCourse: (id: string) => void;
+  removeCourse: (index: number) => void;
 
   setHobby: (hobby: string) => void;
   setGeneralDescription: (desc: string) => void;
@@ -119,12 +115,8 @@ const initialCvState: CvState = {
   photo: undefined,
 };
 
-function removeItem<T extends { id: string }>(arr: T[], id: string): T[] {
-  return arr.filter((item) => item.id !== id);
-}
-
-function addItem(arr: CvItem[], name: string): CvItem[] {
-  return [...arr, { id: String(Date.now()), name }];
+function removeByIndex<T>(arr: T[], index: number): T[] {
+  return arr.filter((_, i) => i !== index);
 }
 
 export const useCvStore = create<CvStore>((set) => ({
@@ -134,61 +126,44 @@ export const useCvStore = create<CvStore>((set) => ({
     setExperience: (experience) => set({ experience }),
     addExperience: (exp) =>
       set((state) => ({
-        experience: [
-          ...state.experience,
-          {
-            ...exp,
-            id: `${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-          },
-        ],
+        experience: [...state.experience, exp],
       })),
-    removeExperience: (id) =>
-      set((state) => ({ experience: removeItem(state.experience, id) })),
+    removeExperience: (index) =>
+      set((state) => ({ experience: removeByIndex(state.experience, index) })),
 
     setEducation: (education) => set({ education }),
     addEducation: (edu) =>
       set((state) => ({
-        education: [
-          ...state.education,
-          {
-            ...edu,
-            id: `${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-          },
-        ],
+        education: [...state.education, edu],
       })),
-    removeEducation: (id) =>
-      set((state) => ({ education: removeItem(state.education, id) })),
+    removeEducation: (index) =>
+      set((state) => ({ education: removeByIndex(state.education, index) })),
 
     setPersonalInfo: (personalInfo) => set({ personalInfo }),
 
     addSkill: (name) =>
-      set((state) => ({ skills: addItem(state.skills, name) })),
-    removeSkill: (id) =>
-      set((state) => ({ skills: removeItem(state.skills, id) })),
+      set((state) => ({ skills: [...state.skills, { name }] })),
+    removeSkill: (index) =>
+      set((state) => ({ skills: removeByIndex(state.skills, index) })),
 
     addCertificate: (name) =>
-      set((state) => ({ certificates: addItem(state.certificates, name) })),
-    removeCertificate: (id) =>
-      set((state) => ({ certificates: removeItem(state.certificates, id) })),
+      set((state) => ({ certificates: [...state.certificates, { name }] })),
+    removeCertificate: (index) =>
+      set((state) => ({
+        certificates: removeByIndex(state.certificates, index),
+      })),
 
     addCourse: (name) =>
-      set((state) => ({ courses: addItem(state.courses, name) })),
-    removeCourse: (id) =>
-      set((state) => ({ courses: removeItem(state.courses, id) })),
+      set((state) => ({ courses: [...state.courses, { name }] })),
+    removeCourse: (index) =>
+      set((state) => ({ courses: removeByIndex(state.courses, index) })),
 
     addLanguage: (name, level) =>
       set((state) => ({
-        languages: [
-          ...state.languages,
-          {
-            id: `${Date.now()}-${Math.random().toString(36).slice(2, 6)}`,
-            name,
-            level,
-          },
-        ],
+        languages: [...state.languages, { name, level }],
       })),
-    removeLanguage: (id) =>
-      set((state) => ({ languages: removeItem(state.languages, id) })),
+    removeLanguage: (index) =>
+      set((state) => ({ languages: removeByIndex(state.languages, index) })),
 
     setHobby: (hobby) => set({ hobby }),
     setGeneralDescription: (generalDescription) => set({ generalDescription }),
