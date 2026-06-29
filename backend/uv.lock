@@ -217,7 +217,7 @@ requires-dist = [
     { name = "jinja2", specifier = "==3.1.6" },
     { name = "passlib", extras = ["bcrypt"], specifier = "==1.7.4" },
     { name = "pdfkit", specifier = "==1.0.0" },
-    { name = "psycopg", extras = ["binary"], specifier = ">=3.3.3" },
+    { name = "psycopg", extras = ["binary"], specifier = "==3.3.3" },
     { name = "python-jose", specifier = "==3.5.0" },
     { name = "sqlalchemy", specifier = "==2.0.48" },
     { name = "uvicorn", extras = ["standard"], specifier = "==0.23.2" },
