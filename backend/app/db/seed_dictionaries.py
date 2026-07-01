@@ -70,15 +70,19 @@ def seed() -> None:
         added = 0
         for category, entries in SEED_DATA.items():
             for sort_order, (code, label) in enumerate(entries):
-                if (category, code) in existing:
+                normalized_code = code.strip().lower()
+                if (category, normalized_code) in existing:
                     continue
                 db.add(
                     Dictionary(
                         category=category,
-                        code=code,
+                        code=normalized_code,
                         label=label,
                         sort_order=sort_order,
                     )
+                )
+                existing.add((category, normalized_code))
+                added += 1
                 )
                 added += 1
 
