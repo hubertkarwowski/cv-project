@@ -6,48 +6,50 @@ export interface ProfileAndBio {
   email: string;
   phone: string;
   gender: string;
-  city: string | null;
-  postalCode: string | null;
-  nationality: string | null;
-  website: string | null;
+  city: string;
+  postalCode: string;
+  nationality: string;
+  website: string;
   generalDescription: string;
-  photo: string | undefined;
+  photo: string;
 }
 
 export interface Timeline {
   company: string;
   position: string;
   city: string;
-  startMonthJob: number | null;
-  startYearJob: number | null;
-  endMonthJob: number | null;
-  endYearJob: number | null;
+  startMonthJob: number | undefined;
+  startYearJob: number | undefined;
+  endMonthJob: number | undefined;
+  endYearJob: number | undefined;
   descriptionJob: string;
   degree: string;
   fieldOfStudy: string;
   institution: string;
   isCurrent: boolean;
-  startMonth: number | null;
-  startYear: number | null;
-  endMonth: number | null;
-  endYear: number | null;
+  startMonth: number | undefined;
+  startYear: number | undefined;
+  endMonth: number | undefined;
+  endYear: number | undefined;
   description: string;
 }
 
 export interface SkillsAndExtras {
-  skills: { name: string | null }[];
-  certificates: { name: string | null }[];
-  courses: { name: string | null }[];
-  languages: { name: string; level: string }[];
+  skills: string;
+  certificates: string;
+  courses: string;
+  languages: string;
   hobby: string;
 }
 
 export interface CvState {
   currentStep: number;
   profileAndBio: ProfileAndBio;
-  timeline: Timeline[];
+  timeline: Timeline;
   skillsAndExtras: SkillsAndExtras;
 }
+
+type CvSteps = 'profileAndBio' | 'timeline' | 'skillsAndExtras';
 
 export interface CvActions {
   nextStep: () => void;
@@ -55,27 +57,20 @@ export interface CvActions {
   goToStep: (step: number) => void;
   resetCvStore: () => void;
 
-  setFields: <T extends 'profileAndBio' | 'skillsAndExtras'>(
-    stepKey: T,
-    fields: Partial<CvState[T]>
+  setFields: <K extends keyof Omit<CvState, 'currentStep'>>(
+    stepKey: K,
+    updates: Partial<CvState[K]>
   ) => void;
 
-  addItem: <
-    T extends 'timeline' | 'skillsAndExtras',
-    SubK extends keyof CvState[T],
-  >(
+  addItem: <T extends CvSteps, K extends keyof CvState[T]>(
     stepKey: T,
-    arrayKey: SubK,
-    item: CvState[T][SubK] extends (infer U)[] ? U : never
+    fieldKey: K,
+    newItem: CvState[T][K]
   ) => void;
 
-  removeItem: <
-    T extends 'timeline' | 'skillsAndExtras',
-    SubK extends keyof CvState[T],
-  >(
+  removeItem: <T extends CvSteps>(
     stepKey: T,
-    arrayKey: SubK,
-    index: number
+    fieldKey: keyof CvState[T]
   ) => void;
 }
 
@@ -96,19 +91,37 @@ const initialCvState: CvState = {
     nationality: '',
     website: '',
     generalDescription: '',
-    photo: undefined,
+    photo: '',
   },
-  timeline: [],
+  timeline: {
+    company: '',
+    position: '',
+    city: '',
+    startMonthJob: undefined,
+    startYearJob: undefined,
+    endMonthJob: undefined,
+    endYearJob: undefined,
+    descriptionJob: '',
+    degree: '',
+    fieldOfStudy: '',
+    institution: '',
+    isCurrent: false,
+    startMonth: undefined,
+    startYear: undefined,
+    endMonth: undefined,
+    endYear: undefined,
+    description: '',
+  },
   skillsAndExtras: {
-    skills: [],
-    certificates: [],
-    courses: [],
-    languages: [],
+    skills: '',
+    certificates: '',
+    courses: '',
+    languages: '',
     hobby: '',
   },
 };
 
-export const useCvStore = create<CvStore>((set) => ({
+export const useCvStore = create<CvStore>((set, get) => ({
   ...initialCvState,
 
   actions: {
@@ -118,29 +131,29 @@ export const useCvStore = create<CvStore>((set) => ({
     goToStep: (step) => set({ currentStep: step }),
     resetCvStore: () => set(initialCvState),
 
-    setFields: (stepKey, fields) =>
+    setFields: (stepKey, updates) =>
       set((state) => ({
-        [stepKey]: { ...state[stepKey], ...fields },
+        [stepKey]: { ...state[stepKey], ...updates },
       })),
 
-    addItem: (stepKey, arrayKey, item) =>
+    addItem: (stepKey, fieldKey, newItem) => {
+      const currentVal = get()[stepKey][fieldKey];
+
+      if (currentVal === newItem) return;
+
       set((state) => ({
         [stepKey]: {
           ...state[stepKey],
-          [arrayKey]: [
-            ...(state[stepKey][arrayKey] as Array<typeof item>),
-            item,
-          ],
+          [fieldKey as string]: newItem,
         },
-      })),
+      }));
+    },
 
-    removeItem: (stepKey, arrayKey, index) =>
+    removeItem: (stepKey, fieldKey) =>
       set((state) => ({
         [stepKey]: {
           ...state[stepKey],
-          [arrayKey]: (state[stepKey][arrayKey] as unknown[]).filter(
-            (_, i) => i !== index
-          ),
+          [fieldKey as string]: '',
         },
       })),
   },
