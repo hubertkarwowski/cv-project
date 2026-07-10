@@ -42,7 +42,7 @@ export interface SkillsAndExtras {
   hobby: string;
 }
 
-export interface CvState {
+export interface CvFormData {
   currentStep: number;
   profileAndBio: ProfileAndBio;
   timeline: Timeline;
@@ -52,33 +52,31 @@ export interface CvState {
 type CvSteps = 'profileAndBio' | 'timeline' | 'skillsAndExtras';
 
 export interface CvActions {
-  nextStep: () => void;
-  prevStep: () => void;
   goToStep: (step: number) => void;
   resetCvStore: () => void;
 
-  setFields: <K extends keyof Omit<CvState, 'currentStep'>>(
+  setFields: <K extends keyof Omit<CvFormData, 'currentStep'>>(
     stepKey: K,
-    updates: Partial<CvState[K]>
+    updates: Partial<CvFormData[K]>
   ) => void;
 
-  addItem: <T extends CvSteps, K extends keyof CvState[T]>(
+  addItem: <T extends CvSteps, K extends keyof CvFormData[T]>(
     stepKey: T,
     fieldKey: K,
-    newItem: CvState[T][K]
+    newItem: CvFormData[T][K]
   ) => void;
 
   removeItem: <T extends CvSteps>(
     stepKey: T,
-    fieldKey: keyof CvState[T]
+    fieldKey: keyof CvFormData[T]
   ) => void;
 }
 
-interface CvStore extends CvState {
+interface CvStore extends CvFormData {
   actions: CvActions;
 }
 
-const initialCvState: CvState = {
+const initialCvState: CvFormData = {
   currentStep: 1,
   profileAndBio: {
     firstName: '',
@@ -125,9 +123,6 @@ export const useCvStore = create<CvStore>((set, get) => ({
   ...initialCvState,
 
   actions: {
-    nextStep: () => set((state) => ({ currentStep: state.currentStep + 1 })),
-    prevStep: () =>
-      set((state) => ({ currentStep: Math.max(1, state.currentStep - 1) })),
     goToStep: (step) => set({ currentStep: step }),
     resetCvStore: () => set(initialCvState),
 
