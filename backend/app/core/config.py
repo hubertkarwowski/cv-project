@@ -18,8 +18,13 @@ class Settings(BaseSettings):
     POSTGRES_SERVER: str
     POSTGRES_PORT: int = 5432
     POSTGRES_USER: str
-    POSTGRES_PASSWORD: str 
-    POSTGRES_DB: str 
+    POSTGRES_PASSWORD: str
+    POSTGRES_DB: str
+    R2_ENDPOINT_URL: str
+    R2_ACCESS_KEY_ID: str
+    R2_SECRET_ACCESS_KEY: str
+    R2_BUCKET: str
+    R2_TOKEN_VALUE: str
 
     @computed_field  # type: ignore[prop-decorator]
     @property
