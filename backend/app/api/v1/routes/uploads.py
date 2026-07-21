@@ -1,9 +1,6 @@
-from fastapi import APIRouter, Depends, UploadFile, File, HTTPException, Path
-from sqlalchemy.orm import Session
-from typing_extensions import Annotated
+from fastapi import APIRouter, UploadFile, File, HTTPException
 
-from app.db.db import get_db
-from app.models.user import User
+from app.api.deps import CurrentUser, DbSession, UserWithAvatar
 from uuid import uuid4
 from app.services.storage import upload_fileobj, delete_object, generate_presigned_url
 
@@ -19,20 +16,16 @@ ALLOWED_IMAGE_TYPES = {
 
 
 @uploads.post("/image/{user_id}")
-async def upload_avatar(
-    user_id: Annotated[int, Path(..., gt=0)],
+def upload_avatar(
+    user: CurrentUser,
+    db: DbSession,
     file: UploadFile = File(...),
-    db: Session = Depends(get_db),
 ) -> dict[str, str]:
-    user = db.get(User, user_id)
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-
     content_type = file.content_type
 
     if content_type not in ALLOWED_IMAGE_TYPES:
         raise HTTPException(status_code=415, detail="Unsupported file type")
-    contents = await file.file.read(MAX_BYTES + 1)
+    contents = file.file.read(MAX_BYTES + 1)
     if len(contents) > MAX_BYTES:
         raise HTTPException(status_code=413, detail="File size is too large (max 5MB)")
     if not contents:
@@ -40,8 +33,8 @@ async def upload_avatar(
 
     extension = ALLOWED_IMAGE_TYPES[content_type]
     old_key = user.avatar_key
-    new_key = f"users/{user_id}/avatar/{uuid4().hex}{extension}"
-    await file.file.seek(0)
+    new_key = f"users/{user.id}/avatar/{uuid4().hex}{extension}"
+    file.file.seek(0)
     upload_fileobj(file.file, new_key, content_type)
     user.avatar_key = new_key
     db.commit()
@@ -51,27 +44,13 @@ async def upload_avatar(
 
 
 @uploads.get("/avatar/{user_id}")
-async def get_avatar(
-    user_id: Annotated[int, Path(..., gt=0)], db: Session = Depends(get_db)
-) -> dict[str, str]:
-    user = db.get(User, user_id)
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-    if user.avatar_key is None:
-        raise HTTPException(status_code=404, detail="Avatar not found")
+def get_avatar(user: UserWithAvatar) -> dict[str, str]:
     url = generate_presigned_url(user.avatar_key)
     return {"url": url}
 
 
 @uploads.delete("/avatar/{user_id}")
-async def delete_avatar(
-    user_id: Annotated[int, Path(..., gt=0)], db: Session = Depends(get_db)
-) -> None:
-    user = db.get(User, user_id)
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-    if user.avatar_key is None:
-        raise HTTPException(status_code=404, detail="Avatar not found")
+def delete_avatar(user: UserWithAvatar, db: DbSession) -> None:
     key = user.avatar_key
     user.avatar_key = None
     db.commit()
