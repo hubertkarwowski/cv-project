@@ -23,6 +23,7 @@ class UserBase(BaseModel):
     city: Optional[str] = Field(default=None, min_length=3, max_length=50)
     citizenship: Optional[str] = Field(default=None, max_length=100)
     website_url: Optional[HttpUrl] = None
+    avatar_key: Optional[str] = Field(default=None, max_length=255)
 
     @field_validator("first_name", "last_name", "city", mode="before")
     @classmethod

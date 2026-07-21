@@ -23,6 +23,7 @@ class User(Base):
     city: Mapped[str | None] = mapped_column(String(50), nullable=True)
     citizenship: Mapped[str | None] = mapped_column(String(100), nullable=True)
     website_url: Mapped[str | None] = mapped_column(String(200), nullable=True)
+    avatar_key: Mapped[str | None] = mapped_column(String(255), nullable=True)
 
 
     @validates("first_name")
