@@ -27,6 +27,6 @@ def get_user_with_avatar_or_404(
     return user
 
 
-CurrentUser = Annotated[User, Depends(get_user_or_404)]
-UserWithAvatar = Annotated[User, Depends(get_user_with_avatar_or_404)]
+TargetUser = Annotated[User, Depends(get_user_or_404)]
+TargetUserWithAvatar = Annotated[User, Depends(get_user_with_avatar_or_404)]
 DbSession = Annotated[Session, Depends(get_db)]

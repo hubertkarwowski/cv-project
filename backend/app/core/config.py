@@ -26,6 +26,13 @@ class Settings(BaseSettings):
     R2_BUCKET: str
     R2_TOKEN_VALUE: str
 
+    AVATAR_MAX_BYTES: int = 5 * 1024 * 1024  # 5 MB
+    ALLOWED_IMAGE_TYPES: dict[str, str] = {
+        "image/jpeg": ".jpg",
+        "image/png": ".png",
+        "image/webp": ".webp",
+    }
+
     @computed_field  # type: ignore[prop-decorator]
     @property
     def SQLALCHEMY_DATABASE_URI(self) -> PostgresDsn:

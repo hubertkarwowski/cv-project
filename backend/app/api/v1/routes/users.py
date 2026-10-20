@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
 
-from app.api.deps import CurrentUser
+from app.api.deps import TargetUser
 from app.db.db import get_db
 from app.models.user import User
 from app.schemas.User import UserBase, UserResponseSchema
@@ -11,7 +11,7 @@ users = APIRouter(tags=["users"])
 
 
 @users.get("/{user_id}", response_model=UserResponseSchema)
-def get_user_data(user: CurrentUser):
+def get_user_data(user: TargetUser):
     return user
 
 
