@@ -36,7 +36,7 @@ export function CvFormLayout({
         <Button
           variant="outline"
           onClick={onNext}
-          className="h-8 w-14 cursor-pointer"
+          className="cursor-pointer"
           disabled={currentStep === totalSteps}
         >
           Next
