@@ -13,6 +13,7 @@ dependencies = [
     "python-jose==3.5.0",
     "sqlalchemy==2.0.48",
     "uvicorn[standard]==0.23.2",
+    "boto3==1.35.99",
 ]
 
 [tool.black]

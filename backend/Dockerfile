@@ -1,14 +1,14 @@
 FROM python:3.13-alpine3.22
 
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
+
 WORKDIR /app
 
-COPY requirements.txt ./
-COPY requirements-dev.txt ./
-
-RUN pip install --no-cache-dir -r requirements.txt && \
-    pip install --no-cache-dir -r requirements-dev.txt
+COPY pyproject.toml uv.lock ./
+RUN uv sync --frozen --no-install-project
 
 COPY . .
+RUN uv sync --frozen
 
 RUN addgroup -S app && adduser -S app -G app && chown -R app:app /app
 
