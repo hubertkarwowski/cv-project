@@ -15,8 +15,11 @@ const personalInfoSchema = z.object({
   generalDescription: z.string().optional(),
 });
 
+type PersonalInfoFormValues = z.infer<typeof personalInfoSchema>;
+
 export function PersonalInfoStep() {
   const profileAndBio = useCvStore((state) => state.profileAndBio);
+  const setFields = useCvStore((state) => state.actions.setFields);
 
   const {
     register,
@@ -26,6 +29,13 @@ export function PersonalInfoStep() {
     defaultValues: profileAndBio,
   });
 
+  const handleFieldBlur =
+    (field: keyof PersonalInfoFormValues) =>
+    (event: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setFields('profileAndBio', { [field]: event.target.value });
+    };
+
   void register;
   void errors;
+  void handleFieldBlur;
 }
