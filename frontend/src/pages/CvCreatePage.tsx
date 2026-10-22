@@ -1,4 +1,5 @@
 import { CvFormLayout } from '@/components/cv/CvFormLayout';
+import { PersonalInfoStep } from '@/components/cv/steps/PersonalInfoStep';
 import { useCvStore } from '@/stores/cv-store';
 
 const TOTAL_STEPS = 4;
@@ -6,7 +7,7 @@ const TOTAL_STEPS = 4;
 function renderStep(step: number) {
   switch (step) {
     case 1: {
-      return <div>Krok 1: Dane osobowe (placeholder)</div>;
+      return <PersonalInfoStep />;
     }
     case 2: {
       return <div>Krok 2: Doświadczenie (placeholder)</div>;
