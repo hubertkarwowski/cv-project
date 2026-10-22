@@ -1,5 +1,8 @@
 import { z } from 'zod';
 
+import { useZodForm } from '@/hooks/useZodForm';
+import { useCvStore } from '@/stores/cv-store';
+
 const personalInfoSchema = z.object({
   firstName: z.string().min(1, 'Imię jest wymagane'),
   lastName: z.string().min(1, 'Nazwisko jest wymagane'),
@@ -12,4 +15,17 @@ const personalInfoSchema = z.object({
   generalDescription: z.string().optional(),
 });
 
-type PersonalInfoFormValues = z.infer<typeof personalInfoSchema>;
+export function PersonalInfoStep() {
+  const profileAndBio = useCvStore((state) => state.profileAndBio);
+
+  const {
+    register,
+    formState: { errors },
+  } = useZodForm({
+    schema: personalInfoSchema,
+    defaultValues: profileAndBio,
+  });
+
+  void register;
+  void errors;
+}
