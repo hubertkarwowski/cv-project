@@ -21,13 +21,22 @@ A modular structure has been implemented within the `app/` directory:
 
 ## Instruction Setup
 
-1. Go to the backend folder: `cd backend`.
-2. Run `uv sync`
-3. Create the schema: `uv run alembic upgrade head`
-4. Seed the dictionaries: `uv run python -m app.db.seed_dictionaries`
-5. Run `uv run fastapi dev`
+From the repository root, run the setup script (requires [uv](https://docs.astral.sh/uv/)):
 
-Steps 3 and 4 need a running database. `.env` usually points at the Docker hostname (`POSTGRES_SERVER=db`), which only resolves inside Compose. Either run them in the container:
+```sh
+.\scripts\dev-setup.ps1   # Windows
+./scripts/dev-setup.sh    # Linux, macOS, CI
+```
+
+Both scripts stop at the first error and are safe to run again. Without PowerShell or bash, run the same steps by hand from `backend/`:
+
+1. Install dependencies: `uv sync`
+2. Create the schema: `uv run alembic upgrade head`
+3. Seed the dictionaries: `uv run python -m app.db.seed_dictionaries`
+
+Then start the app with `uv run fastapi dev`.
+
+Steps 2 and 3 need a running database. `.env` usually points at the Docker hostname (`POSTGRES_SERVER=db`), which only resolves inside Compose, so the script fails with `failed to resolve host 'db'` on the host. Either run these steps in the container:
 
 ```sh
 docker compose up -d --build
@@ -35,7 +44,18 @@ docker compose exec backend uv run alembic upgrade head
 docker compose exec backend uv run python -m app.db.seed_dictionaries
 ```
 
-or, from the host, point them at the published port by setting `POSTGRES_SERVER=localhost` and `POSTGRES_PORT=5433`.
+or start only the database and point the script at its published port. These variables override `.env` for the current terminal:
+
+```powershell
+docker compose up -d db
+$env:POSTGRES_SERVER = 'localhost'; $env:POSTGRES_PORT = '5433'
+.\scripts\dev-setup.ps1
+```
+
+```sh
+docker compose up -d db
+POSTGRES_SERVER=localhost POSTGRES_PORT=5433 ./scripts/dev-setup.sh
+```
 
 ## Database Migrations
 
@@ -54,7 +74,7 @@ Review the generated file before committing it. Autogenerate does not drop Postg
 
 A database created before Alembic already has the tables, so a plain `alembic upgrade head` fails with `already exists`. Pick one:
 
-- **No data to keep (default):** recreate the database, then run steps 3 and 4. `docker compose down -v` removes the volume with **all** local data.
+- **No data to keep (default):** recreate the database, then run the setup again. `docker compose down -v` removes the volume with **all** local data.
 - **Data to keep:** run `uv run alembic stamp head` instead of `upgrade head`. This only marks the database as migrated and changes no tables, so it is correct only if the schema already matches the models. Run `uv run alembic check` afterwards; it reports any difference.
 
 ## Checklist
