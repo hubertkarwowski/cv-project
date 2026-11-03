@@ -83,8 +83,6 @@ def seed() -> None:
                 )
                 existing.add((category, normalized_code))
                 added += 1
-                )
-                added += 1
 
         db.commit()
         print(f"Seed complete: {added} new entries inserted.")
