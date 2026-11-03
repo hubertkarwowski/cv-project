@@ -1,14 +1,15 @@
 """Seed the `dictionaries` table with the core CV lookup data.
 
 Idempotent: skips any (category, code) pair that already exists, so it is safe
-to re-run. Run from the backend/ directory:
+to re-run. Needs the schema in place, so run from the backend/ directory:
 
+    alembic upgrade head
     python -m app.db.seed_dictionaries
 """
 
 from sqlalchemy import select
 
-from app.db.db import SessionLocal, create_tables
+from app.db.db import SessionLocal
 from app.models.dictionary import Dictionary
 from app.schemas.Dictionary import DictionaryCategory
 
@@ -57,7 +58,6 @@ SEED_DATA: dict[DictionaryCategory, list[tuple[str, str]]] = {
 
 
 def seed() -> None:
-    create_tables()
     db = SessionLocal()
     try:
         existing = {
@@ -82,8 +82,6 @@ def seed() -> None:
                     )
                 )
                 existing.add((category, normalized_code))
-                added += 1
-                )
                 added += 1
 
         db.commit()
